@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VNH Laboratory Services — Clinician Resource</title>
+<style>
+  :root{
+    --ink:#16241f;
+    --ink-soft:#3f5249;
+    --paper:#f6f3ea;
+    --paper-raised:#ffffff;
+    --line:#d9d2bd;
+    --pine:#1f4d3d;
+    --pine-deep:#12352a;
+    --pine-soft:#e7efe9;
+    --rust:#a3502b;
+    --rust-soft:#f3e2d4;
+    --gold:#9c7a23;
+    --gold-soft:#f1e7c9;
+    --mono: 'Courier New', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.6;}
+  .wrap{max-width:none;width:100%;margin:0;padding:0 48px;}
+
+  header.top{border-bottom:3px solid var(--pine-deep);background:var(--pine-deep);color:#eef3ee;padding:30px 0 22px;}
+  header.top .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+  .brand-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9fc2ab;margin:0 0 6px;}
+  .brand-title{font-size:30px;font-weight:400;margin:0;letter-spacing:.01em;}
+  .brand-sub{font-family:var(--mono);font-size:12px;color:#bcd4c4;margin:8px 0 0;}
+  .top-meta{text-align:right;font-family:var(--mono);font-size:12px;color:#bcd4c4;line-height:1.7;}
+  .top-meta strong{color:#eef3ee;}
+
+  nav.jump{background:var(--pine-soft);border-bottom:1px solid var(--line);}
+  nav.jump .wrap{display:flex;gap:22px;padding:11px 0;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.03em;}
+  nav.jump a{color:var(--pine-deep);text-decoration:none;border-bottom:1px solid transparent;}
+  nav.jump a:hover{border-bottom-color:var(--pine-deep);}
+
+  section{padding:48px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;}
+  .section-title{font-size:24px;font-weight:400;margin:0 0 18px;}
+  .lede{font-size:17px;color:var(--ink-soft);max-width:680px;margin:0 0 10px;}
+
+  .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;}
+  @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
+
+  .mission-card{
+    background:var(--pine-deep);color:#eef3ee;border-radius:3px;padding:30px 32px;
+    font-family:Georgia,serif;font-size:18px;line-height:1.7;font-style:italic;
+  }
+  .mission-card .label{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9fc2ab;margin-bottom:10px;display:block;}
+
+  .disciplines{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:18px;}
+  .discipline-pill{border:1px solid var(--line);background:var(--paper-raised);padding:9px 12px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);border-radius:2px;}
+
+  .steps{counter-reset:step;list-style:none;margin:0;padding:0;}
+  .steps li{counter-increment:step;position:relative;padding:0 0 22px 44px;border-left:1px solid var(--line);margin-left:12px;}
+  .steps li:last-child{border-left:1px solid transparent;}
+  .steps li::before{
+    content:counter(step);position:absolute;left:-13px;top:0;width:24px;height:24px;
+    background:var(--pine);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:12px;
+  }
+  .steps h4{margin:0 0 4px;font-size:16px;font-weight:400;}
+  .steps p{margin:0;color:var(--ink-soft);font-size:14.5px;}
+
+  .crit-block{margin-top:28px;padding:18px 22px;background:var(--rust-soft);border-radius:3px;}
+  .crit-block h4{margin:0 0 8px;font-size:15px;font-weight:400;color:#6e3416;}
+  .crit-block p{margin:0;font-size:14px;color:#6e3416;}
+
+  .criteria-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px;}
+  @media (max-width:760px){.criteria-grid{grid-template-columns:1fr;}}
+  .criteria-col h4{font-size:15px;font-weight:400;margin:0 0 10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;color:var(--ink-soft);}
+  .criteria-col ul{margin:0;padding-left:18px;font-size:14.5px;}
+  .criteria-col.reject ul li{color:#6e3416;}
+  .criteria-col li{margin-bottom:8px;}
+
+  .hours-table{width:100%;border-collapse:collapse;margin-top:6px;}
+  .hours-table td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:top;}
+  .hours-table td.h-cat{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);width:26%;}
+  .status-strip{display:flex;gap:24px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);}
+  .status-strip .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pine);margin-right:7px;}
+
+  .toolbar{margin:0 0 20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .search-box{flex:1 1 320px;position:relative;}
+  .search-box input{width:100%;font-family:Georgia,serif;font-size:16px;padding:13px 16px 13px 40px;border:1.5px solid var(--ink);background:var(--paper-raised);color:var(--ink);border-radius:2px;}
+  .search-box input:focus{outline:none;border-color:var(--pine);box-shadow:0 0 0 3px rgba(31,77,61,0.12);}
+  .search-box::before{content:"⌕";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--ink-soft);}
+  select#deptFilter{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;padding:0 14px;height:46px;border:1.5px solid var(--ink);background:var(--paper-raised);color:var(--ink);border-radius:2px;}
+  .urgent-toggle{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-soft);cursor:pointer;border:1.5px solid var(--line);padding:0 14px;height:46px;border-radius:2px;background:var(--paper-raised);user-select:none;}
+  .urgent-toggle.active{border-color:var(--rust);color:var(--rust);background:var(--rust-soft);}
+  .urgent-toggle input{display:none;}
+  .result-count{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-bottom:18px;letter-spacing:.02em;}
+
+  .dept-section{margin-bottom:6px;}
+  .dept-head{display:flex;align-items:baseline;gap:14px;padding:16px 0 8px;border-bottom:2px solid var(--ink);margin-bottom:2px;flex-wrap:wrap;}
+  .dept-name{font-size:20px;margin:0;}
+  .dept-count{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);}
+  .dept-note{font-size:13.5px;color:var(--ink-soft);margin:6px 0 14px;font-style:italic;}
+
+  table.tests{width:100%;border-collapse:collapse;margin-bottom:8px;}
+  table.tests th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);padding:6px 10px 6px 0;border-bottom:1px solid var(--line);}
+  table.tests td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top;}
+  td.col-test{width:34%;font-weight:400;}
+  td.col-sample{width:20%;color:var(--ink-soft);font-size:13.5px;}
+  .sample-swatch{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:7px;vertical-align:middle;border:1px solid rgba(0,0,0,0.18);flex-shrink:0;}
+  td.col-routine{width:18%;font-family:var(--mono);font-size:13px;}
+  td.col-urgent{width:18%;font-family:var(--mono);font-size:13px;}
+  td.col-urgent.has-urgent{color:var(--rust);font-weight:400;}
+  .flag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:1px 6px;border-radius:2px;margin-left:6px;vertical-align:1px;}
+  .flag.crit{background:var(--gold-soft);color:#5c4811;}
+  .flag.send{background:var(--rust-soft);color:#6e3416;}
+  .flag.pending{background:#e3e0d8;color:#5a5547;border:1px dashed #9a9483;}
+  .empty-state{text-align:center;padding:60px 0;color:var(--ink-soft);font-style:italic;}
+
+  .ref-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px;}
+  .ref-table td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line);vertical-align:top;}
+  .ref-table td.r-cat{font-family:var(--mono);font-size:11px;color:var(--ink-soft);width:28%;}
+
+  .tube-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:8px;}
+  .tube-card{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);background:var(--paper-raised);padding:14px;border-radius:3px;}
+  .tube-cap{width:18px;height:42px;border-radius:4px 4px 2px 2px;flex-shrink:0;border:1px solid rgba(0,0,0,0.15);margin-top:2px;}
+  .tube-info .tube-name{font-size:14.5px;margin:0 0 3px;}
+  .tube-info .tube-additive{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:0;}
+
+  .legend{margin-top:18px;display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);}
+  .legend span.flag{margin-left:0;margin-right:6px;}
+
+  footer{padding:24px 0 50px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  @media (max-width:900px){
+    .wrap{padding:0 28px;}
+  }
+
+  @media (max-width:680px){
+    .wrap{padding:0 18px;}
+    header.top{padding:22px 0 18px;}
+    .brand-title{font-size:23px;}
+    .brand-sub{font-size:11px;}
+    .top-meta{display:none;}
+    nav.jump .wrap{gap:14px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+    nav.jump a{flex-shrink:0;}
+    section{padding:34px 0;}
+    .section-title{font-size:20px;}
+    .lede{font-size:15.5px;}
+    .mission-card{font-size:16px;padding:22px 20px;}
+    .hours-table td{padding:8px 6px;font-size:13.5px;}
+    .hours-table td.h-cat{width:40%;}
+    .ref-table td{padding:6px 4px;font-size:13px;}
+    .toolbar{flex-direction:column;align-items:stretch;}
+    .search-box,select#deptFilter,.urgent-toggle{flex:1 1 auto;width:100%;}
+
+    table.tests thead{display:none;}
+    table.tests, table.tests tbody, table.tests tr, table.tests td{display:block;width:100% !important;}
+    table.tests tr{border-bottom:1px solid var(--line);padding:12px 0;}
+    table.tests td{padding:3px 0;border-bottom:none;}
+    td.col-test{font-weight:500;font-size:15.5px;}
+    td.col-sample::before{content:"Sample: ";color:var(--ink-soft);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;}
+    td.col-routine::before{content:"Routine: ";color:var(--ink-soft);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;}
+    td.col-urgent::before{content:"Urgent: ";color:var(--ink-soft);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <p class="brand-eyebrow">Vanuatu National Hospital · Department of Laboratory Services</p>
+      <h1 class="brand-title">VNH Laboratory Services</h1>
+      <p class="brand-sub">A guide to specimens, testing, and turnaround</p>
+    </div>
+    <div class="top-meta">
+      For more information, see the VNH Lab Handbook<br>
+      <strong>Updated June 2026</strong>
+    </div>
+  </div>
+</header>
+
+<nav class="jump">
+  <div class="wrap">
+    <a href="#intro">Intro</a>
+    <a href="#mission">Mission</a>
+    <a href="#requesting">Requesting a sample</a>
+    <a href="#criteria">Specimen criteria</a>
+    <a href="#quickguide">Quick guide</a>
+    <a href="#hours">Lab hours</a>
+    <a href="#directory">Test directory</a>
+    <a href="#referred">Referred tests</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="intro">
+    <h2 class="section-title">Welcome to VNH Laboratory Services</h2>
+    <p class="lede" style="max-width:none;">The Vanuatu National Hospital (VNH) Laboratory Department provides quality diagnostic services to support patient care, disease surveillance, and public health programs throughout Vanuatu. This website serves as a practical resource for clinicians and healthcare workers, providing information on available laboratory tests, specimen collection requirements, sample transport, referral testing, laboratory contacts, and service information.</p>
+    <p class="lede" style="max-width:none;">Our laboratory team is committed to delivering accurate, reliable, and timely results that support the prevention, diagnosis, treatment, and monitoring of disease. Services are provided across a range of laboratory disciplines; Biochemistry, Haematology, Blood Bank and Transfusion, Microbiology, Serology, Tuberculosis, Histology, Cytology, Molecular, Phlebotomy, and Surveillance Testing.</p>
+    <div class="disciplines">
+      <div class="discipline-pill">Biochemistry</div>
+      <div class="discipline-pill">Haematology</div>
+      <div class="discipline-pill">Blood bank &amp; transfusion</div>
+      <div class="discipline-pill">Microbiology</div>
+      <div class="discipline-pill">Serology</div>
+      <div class="discipline-pill">Tuberculosis</div>
+      <div class="discipline-pill">Histology</div>
+      <div class="discipline-pill">Cytology</div>
+      <div class="discipline-pill">Molecular</div>
+      <div class="discipline-pill">Phlebotomy</div>
+    </div>
+    <p class="lede" style="margin-top:18px;font-size:14.5px;">This site is regularly updated to ensure users have access to the most current laboratory information. Feedback and suggestions are always welcome as we continue to improve our services and support healthcare delivery across Vanuatu.</p>
+  </section>
+
+  <section id="mission">
+    <p class="section-eyebrow">Mission</p>
+    <h2 class="section-title">Our mission</h2>
+    <div class="mission-card">
+      <span class="label">Vision</span>
+      "Our vision is to have an integrated and decentralized health system that promotes an effective, efficient and equitable health services for the good health and general wellbeing of all people in Vanuatu."
+    </div>
+  </section>
+
+  <section id="requesting">
+    <p class="section-eyebrow">For clinicians</p>
+    <h2 class="section-title">How to request a sample</h2>
+    <p class="lede">Routine and urgent requests are handled differently — make sure the request form reflects the true urgency.</p>
+    <ol class="steps">
+      <li>
+        <h4>Complete the request form fully</h4>
+        <p>Include patient first name, surname, date of birth or age, hospital number (where applicable), gender, specimen type, collection date, date of symptom onset, and the requesting clinician's name.</p>
+      </li>
+      <li>
+        <h4>Flag urgent requests clearly</h4>
+        <p>Mark the form URGENT if the result is needed before the next routine reporting cycle and will directly affect patient management. Unmarked specimens are processed as routine.</p>
+      </li>
+      <li>
+        <h4>Use the correct container for the test</h4>
+        <p>Check the specimen criteria below — wrong or inappropriate containers are a common reason for specimen rejection.</p>
+      </li>
+      <li>
+        <h4>Send the specimen promptly</h4>
+        <p>Deliver to laboratory reception during normal working hours, or to the on-call laboratory scientist out of hours. A phone call ahead of an urgent or unusual specimen helps the lab prepare.</p>
+      </li>
+      <li>
+        <h4>For additional tests requested verbally</h4>
+        <p>Verbal add-on requests (e.g. by phone) must be made within 3 hours of specimen collection, and must include the additional test requested, the requesting clinician's name, and the date and time of the request.</p>
+      </li>
+    </ol>
+    <div class="crit-block">
+      <h4>Out-of-hours requests</h4>
+      <p>Only request urgent analysis out of normal working hours if the result is needed before the next full working day and is likely to directly affect patient management. Specimens without a clear urgency note may be delayed or treated as routine — when in doubt, call the on-call laboratory scientist.</p>
+    </div>
+  </section>
+
+  <section id="criteria">
+    <p class="section-eyebrow">Before you send</p>
+    <h2 class="section-title">Specimen criteria</h2>
+    <div class="criteria-grid">
+      <div class="criteria-col">
+        <h4>Minimum acceptance criteria</h4>
+        <ul>
+          <li>Specimen and request form both carry a minimum of four patient identifiers (name, surname, DOB/age, hospital number, or gender)</li>
+          <li>Specimen type and collection date are recorded</li>
+          <li>Date of onset of symptoms is recorded</li>
+          <li>Requesting clinician's initials are present</li>
+          <li>Specimen is submitted in the correct, authorized container for that test</li>
+          <li>Sputum specimens are received in a biohazard transport bag</li>
+        </ul>
+      </div>
+      <div class="criteria-col reject">
+        <h4>Common rejection reasons</h4>
+        <ul>
+          <li>Form or specimen missing the minimum identifiers above</li>
+          <li>Haemolysed sample for biochemistry, FBC, cross-match, or blood culture</li>
+          <li>Mislabelled or inappropriate specimen container</li>
+          <li>Clotted sample submitted for FBC</li>
+          <li>Sample drawn from an IV line for FBC or biochemistry</li>
+          <li>Neonatal bilirubin sample not wrapped in aluminium foil</li>
+          <li>Saliva submitted instead of sputum</li>
+          <li>Specimen received leaking, unsanitary, or with exterior contamination</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="quickguide">
+    <p class="section-eyebrow">At a glance</p>
+    <h2 class="section-title">Quick guide — sample types &amp; tubes/containers</h2>
+    <p class="lede">Match the sample type to the correct tube or container before collection — the wrong tube is one of the most common reasons a specimen is rejected.</p>
+    <div class="tube-grid">
+      <div class="tube-card"><div class="tube-cap" style="background:#9b7fc4;"></div><div class="tube-info"><p class="tube-name">Whole blood – EDTA</p><p class="tube-additive">Lavender top</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#7fb8d6;"></div><div class="tube-info"><p class="tube-name">Plasma – Sodium Citrate</p><p class="tube-additive">Light blue top</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#c0463f;"></div><div class="tube-info"><p class="tube-name">Serum, no additive</p><p class="tube-additive">Red top</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#c0463f;border-top:8px solid #e0b94a;"></div><div class="tube-info"><p class="tube-name">Serum, with clot activator/gel separator</p><p class="tube-additive">Red top with yellow ring</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:linear-gradient(to right, #5f9e6e 50%, #2c3e8c 50%);"></div><div class="tube-info"><p class="tube-name">Whole blood – Lithium Heparin</p><p class="tube-additive">Green top or Royal Blue top</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#e8e3c9;"></div><div class="tube-info"><p class="tube-name">Blood culture</p><p class="tube-additive">Aerobic/anaerobic culture bottle</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#e0b94a;"></div><div class="tube-info"><p class="tube-name">Urine</p><p class="tube-additive">White or yellow top container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">CSF</p><p class="tube-additive">Sterile screw-top universal container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#7a5430;"></div><div class="tube-info"><p class="tube-name">Stool</p><p class="tube-additive">Brown top container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#cfd6a8;"></div><div class="tube-info"><p class="tube-name">Swab (bacterial culture)</p><p class="tube-additive">Charcoal/Amies transport swab</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#e0b94a;"></div><div class="tube-info"><p class="tube-name">Sputum</p><p class="tube-additive">Yellow or white top container, biohazard bag</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Tissue biopsy</p><p class="tube-additive">Formalin pot</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Nasopharyngeal &amp; oropharyngeal swab (molecular/PCR)</p><p class="tube-additive">Viral transport medium (VTM)</p></div></div>
+    </div>
+  </section>
+
+  <section id="hours">
+    <p class="section-eyebrow">Service times</p>
+    <h2 class="section-title">Laboratory hours &amp; on-call</h2>
+    <table class="hours-table">
+      <tr><td class="h-cat">Monday – Friday</td><td>Working hours 08:00 – 12:00, lunch break 12:00 – 13:00, service resumes through the afternoon</td></tr>
+      <tr><td class="h-cat">Out of hours</td><td>On-call service, 17:00 – 06:00</td></tr>
+      <tr><td class="h-cat">Weekends</td><td>Restricted service, on-call 24 hours</td></tr>
+      <tr><td class="h-cat">Public holidays</td><td>Restricted service, on-call 24 hours</td></tr>
+      <tr><td class="h-cat">Phlebotomy collection</td><td>08:00 – 17:00; weekend collection by arrangement with on-call staff only</td></tr>
+      <tr><td class="h-cat">Data entry, reception &amp; report dispatch</td><td>24 hours</td></tr>
+    </table>
+    <div class="status-strip" id="statusStrip"></div>
+  </section>
+
+  <section id="directory">
+    <p class="section-eyebrow">Test directory</p>
+    <h2 class="section-title">Searchable test directory</h2>
+    <p class="lede">Search by test name or filter by department. Routine and urgent turnaround times are shown side by side — sensitive tests (INR, electrolytes, fasting glucose) are processed immediately regardless of the urgent flag.</p>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search a test — e.g. troponin, FBC, blood culture…" autocomplete="off">
+      </div>
+      <select id="deptFilter"></select>
+      <label class="urgent-toggle" id="urgentToggleLabel">
+        <input type="checkbox" id="urgentToggle">
+        Urgent path only
+      </label>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+    <div id="results"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">No matching test. Try a shorter search term, or check the Referred tests section below.</div>
+
+    <div class="legend">
+      <div><span class="flag crit">CRITICAL</span>has a defined critical-value alert &amp; phone-notification requirement</div>
+      <div><span class="flag send">SEND-AWAY</span>not processed on-site, referred overseas</div>
+      <div><span class="flag pending">PENDING</span>not currently available — listed for reference, check with department before requesting</div>
+    </div>
+  </section>
+
+  <section id="referred">
+    <p class="section-eyebrow">Send-away testing</p>
+    <h2 class="section-title">Tests referred for further testing</h2>
+    <p class="lede">Tests marked <span class="flag send">SEND-AWAY</span> in the directory above are not processed at VNH — they are referred out, and results take days to weeks rather than hours. Discuss timing with the relevant department before sending. If you need a test that isn't listed anywhere in the directory, contact the relevant department directly — they can advise whether it can be referred out.</p>
+  </section>
+
+  <footer>
+    <span>Internal reference only — for more information, see the VNH Lab Handbook</span>
+    <span>Generated for clinician use</span>
+  </footer>
+</div>
+
+<script>
+const DATA = [
+  {dept:"Haematology", note:"Includes malaria diagnostics. INR and electrolytes are treated as sensitive tests and processed immediately regardless of urgency flag.", tests:[
+    {name:"Full Blood Count (FBC)", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"30 min"},
+    {name:"White Blood Cell Differential Count", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
+    {name:"Reticulocyte Count", sample:"Whole blood - EDTA", routine:"4 hours", urgent:"1 hour"},
+    {name:"Peripheral Blood Film Examination", sample:"Whole blood - EDTA", routine:"24 hours", urgent:"2 hours"},
+    {name:"Erythrocyte Sedimentation Rate (ESR)", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"1 hour"},
+    {name:"White Blood Cell Count – Manual", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
+    {name:"Prothrombin Time (PT) / International Normalised Ratio (INR) – Automated", sample:"Plasma - Sodium Citrate", routine:"1 hour", urgent:"30 min", flags:["crit"]},
+    {name:"International Normalised Ratio (INR) – Manual", sample:"Plasma - Sodium Citrate", routine:"1 hour", urgent:"30 min", flags:["crit"]},
+    {name:"Malaria Rapid Diagnostic Test (RDT)", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
+    {name:"Malaria Thick and Thin Blood Film Microscopy", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"1 hour"},
+    {name:"Phlebotomy (Bleeding Time)", sample:"At bedside", routine:"10 min", urgent:"10 min"},
+  ]},
+  {dept:"Blood bank / transfusion", note:"Includes donor recruitment. Cryoprecipitate has the longest lead time of all blood products — plan ahead.", tests:[
+    {name:"ABO and Rh(D) Blood Grouping", sample:"Whole blood - EDTA", routine:"30 min", urgent:"15 min"},
+    {name:"Cross-Match Compatibility Testing", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"1 hour"},
+    {name:"Direct Antiglobulin Test (DAT)", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
+    {name:"Indirect Antiglobulin Test (IAT)", sample:"Whole blood - EDTA or Serum", routine:"1 hour", urgent:"30 min"},
+    {name:"Packed Red Blood Cell (PRBC) Preparation and Issue", sample:"N/A", routine:"2 hours", urgent:"1 hour"},
+    {name:"Fresh Whole Blood Preparation and Issue", sample:"N/A", routine:"2 hours", urgent:"1 hour"},
+    {name:"Fresh Frozen Plasma (FFP) Preparation and Issue", sample:"N/A", routine:"2 hours", urgent:"1 hour"},
+    {name:"Platelet Concentrate Preparation and Issue", sample:"N/A", routine:"4 hours", urgent:"2 hours"},
+    {name:"Platelet-Rich Plasma (PRP) Preparation and Issue", sample:"N/A", routine:"4 hours", urgent:"2 hours"},
+    {name:"Cryoprecipitate Preparation and Issue", sample:"N/A", routine:"24 hours", urgent:"24 hours"},
+    {name:"Blood Donor Recruitment and Assessment", sample:"N/A", routine:"20 min", urgent:"15 min"},
+    {name:"Blood Donor Collection", sample:"N/A", routine:"30 min", urgent:"15 min"},
+  ]},
+  {dept:"Serology", note:"Most serology tests run on a 24-hour routine cycle; urgent requests can be escalated to 2 hours. *Viral load testing is generally performed in-house unless stock out.", tests:[
+    {name:"HIV-1/2 Antibody Screening", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"HIV-1/2 Confirmatory Testing", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"HIV-1 Viral Load*", sample:"Whole blood - EDTA", routine:"24 hours*", urgent:"2 hours*"},
+    {name:"CD4 T-Lymphocyte Count", sample:"Whole blood - EDTA", routine:"24 hours", urgent:"2 hours"},
+    {name:"Hepatitis B Surface Antigen (HBsAg)", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Hepatitis B Viral Load*", sample:"Serum", routine:"24 hours*", urgent:"2 hours*"},
+    {name:"Hepatitis C Antibody Test", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Syphilis Rapid Plasma Reagin (RPR)", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Syphilis Treponema pallidum (TP) Rapid Test", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Dengue Rapid Diagnostic Test (NS1 Antigen and/or IgM/IgG)", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Leptospirosis Rapid Diagnostic Test", sample:"Whole blood - EDTA or Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Leptospirosis Confirmation / Serotyping", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Dengue Serotyping", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Autoimmune Antibody Testing (SLE, ANA, anti-dsDNA)", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Membrane Antibody Testing", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Measles / Rubella Serology (ELISA)", sample:"Serum", routine:"24 hours", urgent:"2 hours"},
+    {name:"Mumps / Chickenpox Serology", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Retroviral Studies (beyond HIV)", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+  ]},
+  {dept:"Biochemistry", note:"Core Chemistry runs on the Cobas C311 / Fujifilm analyser; Immunoassay testing runs on the E411 analyser. Available during normal working hours and after hours.", tests:[
+    {name:"Electrolytes & Minerals (Na/K/Cl/Ca/Mg/PO4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour", flags:["crit"]},
+    {name:"Renal Function Tests (RFT, Urea/Cr/eGFR/UA)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Liver Function Tests (LFT, Bil/ALT/AST/ALP/TP)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour", flags:["crit"]},
+    {name:"Lipid Profile", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Glucose (GLU)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour", flags:["crit"]},
+    {name:"HbA1c", sample:"Whole blood - EDTA", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Cardiac & Muscle Enzymes (CK/CK-MB/LDH/AMY)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Inflammation & Immunology Markers (CRP/ASO/RF/C3/C4/TRF)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"D-Dimer (DD)", sample:"Serum with activator or Serum", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"CSF & Sterile Body Fluid Chemistry", sample:"CSF / Sterile fluids", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Urine Creatinine (UCR)", sample:"Urine", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Thyroid Function Tests (TSH/T3/T4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Cardiac Troponin (TROP)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hours", urgent:"<1 hour", flags:["crit"]},
+    {name:"Tumour Markers (PSA/AFP/CEA/CA125/CA19-9)", sample:"Serum with activator or Serum", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Pregnancy Test", sample:"Serum with activator or Serum", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Vitamin B12", sample:"Serum with activator or Serum", routine:"2–3 hours", urgent:"<1 hour"},
+    {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+  ]},
+  {dept:"Microbiology", note:"Blood cultures need a minimum 5-day incubation before a negative result can be confirmed. Many cultures have no separate urgent pathway — a Gram stain or microscopy result can usually be escalated while the culture continues to incubate.", tests:[
+    {name:"Blood Culture", sample:"Blood", routine:"5 days", urgent:"—"},
+    {name:"CSF Cell Count", sample:"CSF", routine:"30 min", urgent:"30 min"},
+    {name:"CSF Differential", sample:"CSF", routine:"2 hours", urgent:"1 hour"},
+    {name:"CSF Gram Stain", sample:"CSF", routine:"2 hours", urgent:"1 hour"},
+    {name:"CSF Culture", sample:"CSF", routine:"2–3 days", urgent:"—"},
+    {name:"Stool Microscopy", sample:"Stool", routine:"2 hours", urgent:"30 min"},
+    {name:"Stool Culture", sample:"Stool", routine:"2–3 days", urgent:"—"},
+    {name:"Faecal Occult Blood", sample:"Stool", routine:"1 hour", urgent:"30 min"},
+    {name:"Body Fluid Cell Count & Differential", sample:"Sterile fluids", routine:"2 hours", urgent:"1 hour"},
+    {name:"Body Fluid Gram Stain", sample:"Sterile fluids", routine:"2 hours", urgent:"1 hour"},
+    {name:"Body Fluid Culture", sample:"Sterile fluids", routine:"2–3 days", urgent:"—"},
+    {name:"Throat / Nasal Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
+    {name:"Sputum Culture", sample:"Sputum", routine:"2–3 days", urgent:"—"},
+    {name:"Eye / Ear / Nasal Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
+    {name:"High Vaginal Swab", sample:"Swab (bacterial culture)", routine:"1 day", urgent:"—"},
+    {name:"Pus / Wound Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
+    {name:"Urine Dipstick", sample:"Urine", routine:"1 hour", urgent:"30 min"},
+    {name:"Urine Microscopy", sample:"Urine", routine:"1 hour", urgent:"30 min"},
+    {name:"Urine Microscopy, Culture & Sensitivity", sample:"Urine", routine:"2–3 days", urgent:"—"},
+    {name:"KOH Skin Scraping", sample:"Skin scraping", routine:"2 days", urgent:"—"},
+    {name:"Semen Analysis", sample:"Semen", routine:"2 days", urgent:"1 day"},
+    {name:"Pregnancy Test (β-hCG RDT)", sample:"Urine", routine:"1 hour", urgent:"30 min"},
+    {name:"Rotavirus Rapid Diagnostic Test", sample:"Stool", routine:"1 hour", urgent:"30 min"},
+    {name:"Clostridium Species Identification", sample:"Isolate / specimen", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Unusual / Atypical Organism Identification", sample:"Isolate / specimen", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+  ]},
+  {dept:"Tuberculosis", note:"GeneXpert gives same-shift turnaround; smear microscopy and CSF/pleural fluid AFB work run on a 24-hour cycle.", tests:[
+    {name:"GeneXpert MTB/RIF", sample:"Sputum / CSF / tissue", routine:"2 hours", urgent:"1 hr 25 min"},
+    {name:"Acid-Fast Bacilli (AFB) Microscopy", sample:"Sputum", routine:"24 hours", urgent:"—"},
+    {name:"CSF Microscopy for AFB / TB Workup", sample:"CSF", routine:"24 hours", urgent:"—"},
+    {name:"Pleural Fluid TB Investigation", sample:"Pleural aspirate", routine:"24 hours", urgent:"—"},
+    {name:"TB Culture (Mycobacterial Confirmation)", sample:"Sputum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Pertussis / Diphtheria Confirmation", sample:"Swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+  ]},
+  {dept:"Molecular laboratory", note:"GeneXpert panels give same-shift turnaround. Open RT-PCR tests run in batches — completion time depends on batch size, with urgent samples fast-tracked.", tests:[
+    {name:"GeneXpert Respiratory Panel (XPT: SARS-CoV-2 / FLU A/B / RSV)", sample:"NP swab", routine:"2–3 hours", urgent:"1–2 hours"},
+    {name:"GeneXpert Chlamydia / Gonorrhoea", sample:"Urine", routine:"2–3 hours", urgent:"1–2 hours", flags:["pending"]},
+    {name:"Bordetella pertussis PCR", sample:"NP swab", routine:"8–24 hours", urgent:"4–6 hours"},
+    {name:"Leptospirosis PCR", sample:"Urine (>7 days since onset) or Whole blood - EDTA (<7 days since onset)", routine:"8–24 hours", urgent:"4–6 hours"},
+    {name:"Dengue / Zika / Chikungunya PCR Panel", sample:"Whole blood - EDTA", routine:"8–24 hours", urgent:"4–6 hours"},
+    {name:"Malaria PCR", sample:"Blood", routine:"8–24 hours", urgent:"4–6 hours", flags:["pending"]},
+    {name:"Measles / Rubella PCR Panel", sample:"NP or OP swab and Whole blood - EDTA", routine:"8–24 hours", urgent:"4–6 hours"},
+    {name:"Monkeypox PCR", sample:"Swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"SARS-CoV-2 Genomic Sequencing / Variant Typing", sample:"NP swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Influenza / RSV Confirmatory Testing", sample:"NP swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+  ]},
+  {dept:"Histology", note:"Specimens needing further investigation are shipped overseas to certified laboratories. Pathology advice is available locally, with overseas pathologist input for clarification.", tests:[
+    {name:"Biopsy – Malignant Diagnosis", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
+    {name:"Biopsy – In Situ Carcinoma", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
+    {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
+  ]},
+  {dept:"Cytology", note:"Non-malignant results are issued once complete. Abnormal smears receive a verbal preliminary diagnosis locally, then confirmation overseas (NZ/Australia), adding 2–3 weeks.", tests:[
+    {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"1 week", urgent:"1 week"},
+    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Urine Cytology", sample:"Urine", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 month"},
+    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"2 weeks"},
+  ]},
+  {dept:"Other / specialist referred tests", note:"These have no dedicated local department and are referred out as standard practice.", tests:[
+    {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Any other test not held at VNH", sample:"As advised by department", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+  ]},
+];
+
+const dom = {
+  results: document.getElementById('results'),
+  search: document.getElementById('searchInput'),
+  deptFilter: document.getElementById('deptFilter'),
+  urgentToggle: document.getElementById('urgentToggle'),
+  urgentLabel: document.getElementById('urgentToggleLabel'),
+  resultCount: document.getElementById('resultCount'),
+  emptyState: document.getElementById('emptyState'),
+  statusStrip: document.getElementById('statusStrip'),
+};
+
+let totalTests = 0;
+DATA.forEach(d => totalTests += d.tests.length);
+
+dom.statusStrip.innerHTML =
+  '<span><span class="dot"></span>'+DATA.length+' departments &middot; '+totalTests+' tests indexed</span>' +
+  '<span><span class="dot"></span>Mon&ndash;Fri 08:00&ndash;17:00 full service</span>' +
+  '<span><span class="dot"></span>On-call 17:00&ndash;06:00 &amp; weekends restricted</span>';
+
+const opt0 = document.createElement('option');
+opt0.value=''; opt0.textContent='All departments';
+dom.deptFilter.appendChild(opt0);
+DATA.forEach(d=>{
+  const o=document.createElement('option');
+  o.value=d.dept; o.textContent=d.dept;
+  dom.deptFilter.appendChild(o);
+});
+
+function colorForToken(s){
+  if(!s) return null;
+  if(s.includes('n/a') || s.includes('isolate') || s.includes('discharge') || s.includes('various')) return null;
+  if(s.includes('vtm') || s.includes('np swab') || s.includes('np or op') || s.includes('nasopharyngeal') || s.includes('oropharyngeal')) return '#dedad0';
+  if(s.includes('activator')) return 'linear-gradient(to bottom, #c0463f 60%, #e0b94a 60%)';
+  if(s.includes('citrate')) return '#7fb8d6';
+  if(s.includes('edta')) return '#9b7fc4';
+  if(s.includes('heparin')) return 'linear-gradient(to right, #5f9e6e 50%, #2c3e8c 50%)';
+  if(s.includes('serum') || s.includes('plasma')) return '#c0463f';
+  if(s.includes('blood culture')) return '#e8e3c9';
+  if(s.includes('urine')) return '#e0b94a';
+  if(s.includes('csf')) return '#dedad0';
+  if(s.includes('stool') || s.includes('faeces')) return '#7a5430';
+  if(s.includes('sputum')) return '#e0b94a';
+  if(s.includes('swab')) return '#cfd6a8';
+  if(s.includes('tissue') || s.includes('biopsy') || s.includes('aspirate')) return '#dedad0';
+  if(s.includes('fluid')) return '#dedad0';
+  if(s.includes('blood')) return '#9b7fc4';
+  return null;
+}
+
+function tubeColorsFor(sample){
+  if(!sample) return [];
+  const s = sample.toLowerCase();
+  // split on common separators used across multi-type sample strings
+  const tokens = s.split(/ or |\/| and /).map(t=>t.trim()).filter(Boolean);
+  const colors = [];
+  tokens.forEach(tok=>{
+    const c = colorForToken(tok);
+    if(c && !colors.includes(c)) colors.push(c);
+  });
+  if(colors.length===0){
+    const fallback = colorForToken(s);
+    if(fallback) colors.push(fallback);
+  }
+  return colors;
+}
+
+function sampleHTML(sample){
+  if(!sample) return '—';
+  const colors = tubeColorsFor(sample);
+  const swatches = colors.map(c=>'<span class="sample-swatch" style="background:'+c+';"></span>').join('');
+  return swatches + sample;
+}
+
+function flagHTML(flags){
+  if(!flags) return '';
+  return flags.map(f=>{
+    if(f==='crit') return '<span class="flag crit">CRITICAL</span>';
+    if(f==='send') return '<span class="flag send">SEND-AWAY</span>';
+    if(f==='pending') return '<span class="flag pending">PENDING</span>';
+    return '';
+  }).join('');
+}
+
+function render(){
+  const q = dom.search.value.trim().toLowerCase();
+  const deptSel = dom.deptFilter.value;
+  const urgentOnly = dom.urgentToggle.checked;
+
+  dom.results.innerHTML='';
+  let shown=0;
+
+  DATA.forEach(section=>{
+    if(deptSel && section.dept!==deptSel) return;
+    const matched = section.tests.filter(t=>{
+      if(q && !t.name.toLowerCase().includes(q)) return false;
+      if(urgentOnly && (!t.urgent || t.urgent==='—')) return false;
+      return true;
+    });
+    if(matched.length===0) return;
+    shown += matched.length;
+
+    const sec=document.createElement('div');
+    sec.className='dept-section';
+    sec.innerHTML =
+      '<div class="dept-head"><h3 class="dept-name">'+section.dept+'</h3>'+
+      '<span class="dept-count">'+matched.length+' / '+section.tests.length+' tests</span></div>';
+
+    const table=document.createElement('table');
+    table.className='tests';
+    table.innerHTML='<thead><tr><th>Test</th><th>Sample</th><th>Routine TAT</th><th>Urgent TAT</th></tr></thead>';
+    const tbody=document.createElement('tbody');
+    matched.forEach(t=>{
+      const tr=document.createElement('tr');
+      const hasUrgentClass=(t.urgent && t.urgent!=='—' && t.urgent!==t.routine)?' has-urgent':'';
+      tr.innerHTML =
+        '<td class="col-test">'+t.name+flagHTML(t.flags)+'</td>'+
+        '<td class="col-sample">'+sampleHTML(t.sample)+'</td>'+
+        '<td class="col-routine">'+t.routine+'</td>'+
+        '<td class="col-urgent'+hasUrgentClass+'">'+t.urgent+'</td>';
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    sec.appendChild(table);
+    dom.results.appendChild(sec);
+  });
+
+  dom.resultCount.textContent = shown + (shown===1?' test':' tests') + ' shown';
+  dom.emptyState.style.display = shown===0 ? 'block':'none';
+}
+
+dom.search.addEventListener('input', render);
+dom.deptFilter.addEventListener('change', render);
+dom.urgentToggle.addEventListener('change', ()=>{
+  dom.urgentLabel.classList.toggle('active', dom.urgentToggle.checked);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
