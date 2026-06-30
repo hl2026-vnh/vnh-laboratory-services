@@ -33,7 +33,7 @@
   .top-meta strong{color:#eef3ee;}
 
   nav.jump{background:var(--pine-soft);border-bottom:1px solid var(--line);}
-  nav.jump .wrap{display:flex;gap:22px;padding:11px 0;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.03em;}
+  nav.jump .wrap{display:flex;gap:22px;padding:11px 0;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.03em;justify-content:center;text-align:center;}
   nav.jump a{color:var(--pine-deep);text-decoration:none;border-bottom:1px solid transparent;}
   nav.jump a:hover{border-bottom-color:var(--pine-deep);}
 
@@ -41,7 +41,7 @@
   section:last-of-type{border-bottom:none;}
   .section-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;}
   .section-title{font-size:24px;font-weight:400;margin:0 0 18px;}
-  .lede{font-size:17px;color:var(--ink-soft);max-width:680px;margin:0 0 10px;}
+  .lede{font-size:17px;color:var(--ink-soft);margin:0 0 10px;}
 
   .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;}
   @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
@@ -53,7 +53,8 @@
   .mission-card .label{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9fc2ab;margin-bottom:10px;display:block;}
 
   .disciplines{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:18px;}
-  .discipline-pill{border:1px solid var(--line);background:var(--paper-raised);padding:9px 12px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);border-radius:2px;}
+  .discipline-pill{border:1px solid var(--line);background:var(--paper-raised);padding:9px 12px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);border-radius:2px;text-decoration:none;display:block;cursor:pointer;transition:background 0.15s, border-color 0.15s;}
+  .discipline-pill:hover{background:var(--pine-soft);border-color:var(--pine);color:var(--pine-deep);}
 
   .steps{counter-reset:step;list-style:none;margin:0;padding:0;}
   .steps li{counter-increment:step;position:relative;padding:0 0 22px 44px;border-left:1px solid var(--line);margin-left:12px;}
@@ -196,19 +197,19 @@
 
   <section id="intro">
     <h2 class="section-title">Welcome to VNH Laboratory Services</h2>
-    <p class="lede" style="max-width:none;">The Vanuatu National Hospital (VNH) Laboratory Department provides quality diagnostic services to support patient care, disease surveillance, and public health programs throughout Vanuatu. This website serves as a practical resource for clinicians and healthcare workers, providing information on available laboratory tests, specimen collection requirements, sample transport, referral testing, laboratory contacts, and service information.</p>
-    <p class="lede" style="max-width:none;">Our laboratory team is committed to delivering accurate, reliable, and timely results that support the prevention, diagnosis, treatment, and monitoring of disease. Services are provided across a range of laboratory disciplines; Biochemistry, Haematology, Blood Bank and Transfusion, Microbiology, Serology, Tuberculosis, Histology, Cytology, Molecular, Phlebotomy, and Surveillance Testing.</p>
+    <p class="lede">The Vanuatu National Hospital (VNH) Laboratory Department provides quality diagnostic services to support patient care, disease surveillance, and public health programs throughout Vanuatu. This website serves as a practical resource for clinicians and healthcare workers, providing information on available laboratory tests, specimen collection requirements, sample transport, referral testing, laboratory contacts, and service information.</p>
+    <p class="lede">Our laboratory team is committed to delivering accurate, reliable, and timely results that support the prevention, diagnosis, treatment, and monitoring of disease. Services are provided across a range of laboratory disciplines; Biochemistry, Haematology, Blood Bank and Transfusion, Microbiology, Serology, Tuberculosis, Histology, Cytology, Molecular, Phlebotomy, and Surveillance Testing.</p>
     <div class="disciplines">
-      <div class="discipline-pill">Biochemistry</div>
-      <div class="discipline-pill">Haematology</div>
-      <div class="discipline-pill">Blood bank &amp; transfusion</div>
-      <div class="discipline-pill">Microbiology</div>
-      <div class="discipline-pill">Serology</div>
-      <div class="discipline-pill">Tuberculosis</div>
-      <div class="discipline-pill">Histology</div>
-      <div class="discipline-pill">Cytology</div>
-      <div class="discipline-pill">Molecular</div>
-      <div class="discipline-pill">Phlebotomy</div>
+      <a href="#directory" class="discipline-pill" data-dept="Biochemistry" onclick="jumpToDept(this)">Biochemistry</a>
+      <a href="#directory" class="discipline-pill" data-dept="Haematology" onclick="jumpToDept(this)">Haematology</a>
+      <a href="#directory" class="discipline-pill" data-dept="Blood bank / transfusion" onclick="jumpToDept(this)">Blood bank &amp; transfusion</a>
+      <a href="#directory" class="discipline-pill" data-dept="Microbiology" onclick="jumpToDept(this)">Microbiology</a>
+      <a href="#directory" class="discipline-pill" data-dept="Serology" onclick="jumpToDept(this)">Serology</a>
+      <a href="#directory" class="discipline-pill" data-dept="Tuberculosis" onclick="jumpToDept(this)">Tuberculosis</a>
+      <a href="#directory" class="discipline-pill" data-dept="Histology" onclick="jumpToDept(this)">Histology</a>
+      <a href="#directory" class="discipline-pill" data-dept="Cytology" onclick="jumpToDept(this)">Cytology</a>
+      <a href="#directory" class="discipline-pill" data-dept="Molecular laboratory" onclick="jumpToDept(this)">Molecular</a>
+      <a href="#directory" class="discipline-pill" data-dept="Haematology" onclick="jumpToDept(this)">Phlebotomy</a>
     </div>
     <p class="lede" style="margin-top:18px;font-size:14.5px;">This site is regularly updated to ensure users have access to the most current laboratory information. Feedback and suggestions are always welcome as we continue to improve our services and support healthcare delivery across Vanuatu.</p>
   </section>
@@ -636,6 +637,16 @@ dom.urgentToggle.addEventListener('change', ()=>{
 });
 
 render();
+</script>
+<script>
+function jumpToDept(el){
+  const dept = el.getAttribute('data-dept');
+  dom.deptFilter.value = dept;
+  dom.search.value = '';
+  dom.urgentToggle.checked = false;
+  dom.urgentLabel.classList.remove('active');
+  render();
+}
 </script>
 </body>
 </html>
