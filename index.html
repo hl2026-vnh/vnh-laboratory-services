@@ -33,7 +33,7 @@
   .top-meta strong{color:#eef3ee;}
 
   nav.jump{background:var(--pine-soft);border-bottom:1px solid var(--line);}
-  nav.jump .wrap{display:flex;gap:22px;padding:11px 0;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.03em;justify-content:center;text-align:center;}
+  nav.jump .wrap{display:flex;gap:22px;padding:11px 0;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.03em;justify-content:center;}
   nav.jump a{color:var(--pine-deep);text-decoration:none;border-bottom:1px solid transparent;}
   nav.jump a:hover{border-bottom-color:var(--pine-deep);}
 
@@ -363,7 +363,7 @@
 <script>
 const DATA = [
   {dept:"Haematology", note:"Includes malaria diagnostics. INR and electrolytes are treated as sensitive tests and processed immediately regardless of urgency flag.", tests:[
-    {name:"Full Blood Count (FBC)", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"30 min"},
+    {name:"Full Blood Count (FBC)", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"15-30 min"},
     {name:"White Blood Cell Differential Count", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
     {name:"Reticulocyte Count", sample:"Whole blood - EDTA", routine:"4 hours", urgent:"1 hour"},
     {name:"Peripheral Blood Film Examination", sample:"Whole blood - EDTA", routine:"24 hours", urgent:"2 hours"},
@@ -372,14 +372,15 @@ const DATA = [
     {name:"Prothrombin Time (PT) / International Normalised Ratio (INR) – Automated", sample:"Plasma - Sodium Citrate", routine:"1 hour", urgent:"30 min", flags:["crit"]},
     {name:"International Normalised Ratio (INR) – Manual", sample:"Plasma - Sodium Citrate", routine:"1 hour", urgent:"30 min", flags:["crit"]},
     {name:"Malaria Rapid Diagnostic Test (RDT)", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
-    {name:"Malaria Thick and Thin Blood Film Microscopy", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"1 hour"},
+    {name:"Malaria Microscopy", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"1 hour"},
+    {name:"Microfilariae Parasite Screening", sample:"Whole blood - EDTA", routine:"24 hours", urgent:"—"},
     {name:"Phlebotomy (Bleeding Time)", sample:"At bedside", routine:"10 min", urgent:"10 min"},
   ]},
   {dept:"Blood bank / transfusion", note:"Includes donor recruitment. Cryoprecipitate has the longest lead time of all blood products — plan ahead.", tests:[
-    {name:"ABO and Rh(D) Blood Grouping", sample:"Whole blood - EDTA", routine:"30 min", urgent:"15 min"},
-    {name:"Cross-Match Compatibility Testing", sample:"Whole blood - EDTA", routine:"2 hours", urgent:"1 hour"},
-    {name:"Direct Antiglobulin Test (DAT)", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
-    {name:"Indirect Antiglobulin Test (IAT)", sample:"Whole blood - EDTA or Serum", routine:"1 hour", urgent:"30 min"},
+    {name:"ABO and Rh(D) Blood Grouping", sample:"Whole blood - EDTA or Serum", routine:"30 min", urgent:"15 min"},
+    {name:"Cross-Match Compatibility Testing", sample:"Whole blood - EDTA or Serum", routine:"2 hours", urgent:"1 hour"},
+    {name:"Direct Coomb's Test (DCT)", sample:"Whole blood - EDTA", routine:"1 hour", urgent:"30 min"},
+    {name:"Indirect Coomb's Test (ICT)", sample:"Whole blood - EDTA or Serum", routine:"1 hour", urgent:"30 min"},
     {name:"Packed Red Blood Cell (PRBC) Preparation and Issue", sample:"N/A", routine:"2 hours", urgent:"1 hour"},
     {name:"Fresh Whole Blood Preparation and Issue", sample:"N/A", routine:"2 hours", urgent:"1 hour"},
     {name:"Fresh Frozen Plasma (FFP) Preparation and Issue", sample:"N/A", routine:"2 hours", urgent:"1 hour"},
