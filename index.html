@@ -40,9 +40,14 @@
 
   /* NAV */
   nav.jump{background:var(--navy);border-bottom:2px solid var(--red);}
-  nav.jump .wrap{display:flex;gap:0;padding:0;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.03em;}
+  nav.jump .nav-wrap{display:flex;align-items:center;gap:16px;padding:0;flex-wrap:wrap;}
+  nav.jump .nav-links{display:flex;flex:1 1 auto;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.03em;}
   nav.jump a{flex:1 1 auto;text-align:center;color:#cfe0f0;text-decoration:none;padding:12px 18px;display:inline-block;border-right:1px solid rgba(255,255,255,0.1);}
   nav.jump a:hover{background:var(--navy-deep);color:#ffffff;}
+  nav.jump .nav-search{flex:0 0 auto;padding:8px 12px;}
+  nav.jump .nav-search input{width:200px;font-family:Arial,sans-serif;font-size:13px;padding:7px 10px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.12);color:#ffffff;border-radius:3px;}
+  nav.jump .nav-search input::placeholder{color:#cfe0f0;}
+  nav.jump .nav-search input:focus{outline:none;border-color:#ffffff;background:rgba(255,255,255,0.2);}
 
   /* SECTIONS */
   section{padding:48px 0;border-bottom:1px solid var(--line);}
@@ -166,8 +171,10 @@
     .header-updated{position:static;margin:0 0 6px;text-align:right;width:100%;}
     .header-titlebar img.vnh-logo{height:44px;}
     .header-titlebar img.coat-logo{height:60px;}
-    nav.jump .wrap{gap:0;flex-wrap:wrap;}
+    nav.jump .nav-wrap{gap:0;flex-wrap:wrap;}
     nav.jump a{padding:10px 14px;font-size:12px;}
+    nav.jump .nav-search{flex:1 1 100%;padding:10px 14px;}
+    nav.jump .nav-search input{width:100%;}
     section{padding:28px 0;}
     .section-title{font-size:19px;}
     .lede{font-size:15px;}
@@ -203,16 +210,21 @@
 </header>
 
 <nav class="jump">
-  <div class="wrap">
-    <a href="#intro">Intro</a>
-    <a href="#mission">Mission</a>
-    <a href="#requesting">Requesting a sample</a>
-    <a href="#criteria">Specimen criteria</a>
-    <a href="#quickguide">Quick guide</a>
-    <a href="#hours">Lab hours</a>
-    <a href="#directory">Test directory</a>
-    <a href="#referred">Referred tests</a>
-    <a href="VNH_Laboratory_Handbook.pdf" target="_blank">Lab Handbook</a>
+  <div class="wrap nav-wrap">
+    <div class="nav-links">
+      <a href="#intro">Intro</a>
+      <a href="#mission">Mission</a>
+      <a href="#requesting">Requesting a sample</a>
+      <a href="#criteria">Specimen criteria</a>
+      <a href="#quickguide">Quick guide</a>
+      <a href="#hours">Lab hours</a>
+      <a href="#directory">Test directory</a>
+      <a href="#referred">Referred tests</a>
+      <a href="VNH_Laboratory_Handbook.pdf" target="_blank">Lab Handbook</a>
+    </div>
+    <div class="nav-search">
+      <input type="text" id="topSearchInput" placeholder="Search a test&hellip;" autocomplete="off">
+    </div>
   </div>
 </nav>
 
@@ -239,7 +251,6 @@
 
   <section id="mission">
     <p class="section-eyebrow">Mission</p>
-    <h2 class="section-title">Our mission</h2>
     <div class="mission-card">
       "Our vision is to have an integrated and decentralized health system that promotes an effective, efficient and equitable health services for the good health and general wellbeing of all people in Vanuatu."
     </div>
@@ -385,18 +396,18 @@
 <script>
 const DATA = [
   {dept:"Haematology", note:"Includes malaria diagnostics. INR and electrolytes are treated as sensitive tests and processed immediately regardless of urgency flag.", tests:[
-    {name:"Full Blood Count (FBC)", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"15-30 mins"},
+    {name:"Full Blood Count (FBC)", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"15–30 mins"},
     {name:"White Blood Cell Differential Count", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
     {name:"Reticulocyte Count", sample:"Whole blood - EDTA", routine:"4 hrs", urgent:"1 hr"},
     {name:"Peripheral Blood Film Examination", sample:"Whole blood - EDTA", routine:"24 hrs", urgent:"2 hrs"},
-    {name:"Erythrocyte Sedimentation Rate (ESR)", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"1.5 hr"},
+    {name:"Erythrocyte Sedimentation Rate (ESR)", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"1.5 hrs"},
     {name:"White Blood Cell Count – Manual", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
     {name:"Prothrombin Time (PT) / International Normalised Ratio (INR) – Automated", sample:"Plasma - Sodium Citrate", routine:"1 hr", urgent:"30 mins", flags:["crit"]},
     {name:"International Normalised Ratio (INR) – Manual", sample:"Plasma - Sodium Citrate", routine:"1 hr", urgent:"30 mins", flags:["crit"]},
     {name:"Malaria Rapid Diagnostic Test (RDT)", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
     {name:"Malaria Microscopy", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"1 hr"},
-    {name:"Microfilariae Parasite Screening", sample:"Whole blood - EDTA", routine:"24 hrs", urgent:"—"},
-    {name:"Phlebotomy (Bleeding Time)", sample:"At bedside", routine:"10 mins", urgent:"10 mins"},
+    {name:"Microfilariae Parasite Screening", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"—"},
+    {name:"Phlebotomy (Bleeding Time)", sample:"At bedside", routine:"30 mins", urgent:"15 mins"},
   ]},
   {dept:"Blood bank / transfusion", note:"Includes donor recruitment. Cryoprecipitate has the longest lead time of all blood products — plan ahead.", tests:[
     {name:"ABO and Rh(D) Blood Grouping", sample:"Whole blood - EDTA or Serum", routine:"30 mins", urgent:"15 mins"},
@@ -408,7 +419,7 @@ const DATA = [
     {name:"Fresh Frozen Plasma (FFP) Preparation and Issue", sample:"N/A", routine:"2 hrs", urgent:"1 hr"},
     {name:"Platelet Concentrate Preparation and Issue", sample:"N/A", routine:"4 hrs", urgent:"2 hrs"},
     {name:"Platelet-Rich Plasma (PRP) Preparation and Issue", sample:"N/A", routine:"4 hrs", urgent:"2 hrs"},
-    {name:"Cryoprecipitate Preparation and Issue", sample:"N/A", routine:"24 hrs", urgent:"24 hrs"},
+    {name:"Cryoprecipitate Preparation and Issue", sample:"N/A", routine:"24 hrs", urgent:"—"},
     {name:"Blood Donor Recruitment and Assessment", sample:"N/A", routine:"20 mins", urgent:"15 mins"},
     {name:"Blood Donor Collection", sample:"N/A", routine:"30 mins", urgent:"15 mins"},
   ]},
@@ -424,13 +435,13 @@ const DATA = [
     {name:"Syphilis Treponema pallidum (TP) Rapid Test", sample:"Whole blood - EDTA or Serum", routine:"24 hrs", urgent:"2 hrs"},
     {name:"Dengue Rapid Diagnostic Test (NS1 Antigen and/or IgM/IgG)", sample:"Whole blood - EDTA or Serum", routine:"24 hrs", urgent:"2 hrs"},
     {name:"Leptospirosis Rapid Diagnostic Test", sample:"Whole blood - EDTA or Serum", routine:"24 hrs", urgent:"2 hrs"},
-    {name:"Leptospirosis Confirmation / Serotyping", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Dengue Serotyping", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Autoimmune Antibody Testing (SLE, ANA, anti-dsDNA)", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Membrane Antibody Testing", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Leptospirosis Confirmation / Serotyping", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Dengue Serotyping", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Autoimmune Antibody Testing (SLE, ANA, anti-dsDNA)", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Membrane Antibody Testing", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
     {name:"Measles / Rubella Serology (ELISA)", sample:"Serum", routine:"24 hrs", urgent:"2 hrs"},
-    {name:"Mumps / Chickenpox Serology", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Retroviral Studies (beyond HIV)", sample:"Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Mumps / Chickenpox Serology", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Retroviral Studies (beyond HIV)", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
   ]},
   {dept:"Biochemistry", note:"Core Chemistry runs on the Cobas C311 / Fujifilm analyser; Immunoassay testing runs on the E411 analyser. Available during normal working hours and after hours.", tests:[
     {name:"Electrolytes & Minerals (Na/K/Cl/Ca/Mg/PO4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
@@ -449,11 +460,11 @@ const DATA = [
     {name:"Tumour Markers (PSA/AFP/CEA/CA125/CA19-9)", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Pregnancy Test", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Vitamin B12", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"weeks", urgent:"—", flags:["send"]},
   ]},
   {dept:"Microbiology", note:"Blood cultures need a minimum 5-day incubation before a negative result can be confirmed. Many cultures have no separate urgent pathway — a Gram stain or microscopy result can usually be escalated while the culture continues to incubate.", tests:[
     {name:"Blood Culture", sample:"Blood", routine:"5 days", urgent:"—"},
-    {name:"CSF Cell Count", sample:"CSF", routine:"30 mins", urgent:"30 mins"},
+    {name:"CSF Cell Count", sample:"CSF", routine:"30 mins", urgent:"—"},
     {name:"CSF Differential", sample:"CSF", routine:"2 hrs", urgent:"1 hr"},
     {name:"CSF Gram Stain", sample:"CSF", routine:"2 hrs", urgent:"1 hr"},
     {name:"CSF Culture", sample:"CSF", routine:"2–3 days", urgent:"—"},
@@ -475,16 +486,16 @@ const DATA = [
     {name:"Semen Analysis", sample:"Semen", routine:"2 days", urgent:"1 day"},
     {name:"Pregnancy Test (β-hCG RDT)", sample:"Urine", routine:"1 hr", urgent:"30 mins"},
     {name:"Rotavirus Rapid Diagnostic Test", sample:"Stool", routine:"1 hr", urgent:"30 mins"},
-    {name:"Clostridium Species Identification", sample:"Isolate / specimen", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Unusual / Atypical Organism Identification", sample:"Isolate / specimen", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Clostridium Species Identification", sample:"Isolate / specimen", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Unusual / Atypical Organism Identification", sample:"Isolate / specimen", routine:"weeks", urgent:"—", flags:["send"]},
   ]},
   {dept:"Tuberculosis", note:"GeneXpert gives same-shift turnaround; smear microscopy and CSF/pleural fluid AFB work run on a 24-hour cycle.", tests:[
     {name:"GeneXpert MTB/RIF Ultra", sample:"Sputum / CSF / Tissue / Other body fluids", routine:"2 hrs", urgent:"1 hr 25 mins"},
     {name:"Acid-Fast Bacilli (AFB) Microscopy (TB workup / TB Follow up TOC)", sample:"Sputum / CSF / Tissue / Other body fluids", routine:"24 hrs", urgent:"—"},
     {name:"Pleural Fluid TB Investigation", sample:"Pleural aspirate", routine:"24 hrs", urgent:"—"},
-    {name:"Leprosy Investigation", sample:"Skin/slit-skin smear", routine:"See Microbiology", urgent:"See Microbiology"},
-    {name:"TB Culture (Mycobacterial Confirmation)", sample:"Sputum", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Pertussis / Diphtheria Confirmation", sample:"Swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Leprosy Investigation", sample:"Skin/slit-skin smear", routine:"See Microbiology", urgent:"—"},
+    {name:"TB Culture (Mycobacterial Confirmation)", sample:"Sputum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Pertussis / Diphtheria Confirmation", sample:"Swab", routine:"weeks", urgent:"—", flags:["send"]},
   ]},
   {dept:"Molecular laboratory", note:"GeneXpert panels give same-shift turnaround. Open RT-PCR tests run in batches — completion time depends on batch size, with urgent samples fast-tracked.", tests:[
     {name:"GeneXpert Respiratory Panel (XPT: SARS-CoV-2 / FLU A/B / RSV)", sample:"NP swab", routine:"2–3 hrs", urgent:"1–2 hrs"},
@@ -492,34 +503,34 @@ const DATA = [
     {name:"Bordetella pertussis PCR", sample:"NP swab", routine:"8–24 hrs", urgent:"4–6 hrs"},
     {name:"Leptospirosis PCR", sample:"Urine (>7 days since onset) or Whole blood - EDTA (<7 days since onset)", routine:"8–24 hrs", urgent:"4–6 hrs"},
     {name:"Dengue / Zika / Chikungunya PCR Panel", sample:"Whole blood - EDTA", routine:"8–24 hrs", urgent:"4–6 hrs"},
-    {name:"Malaria PCR", sample:"Blood", routine:"8–24 hrs", urgent:"4–6 hrs", flags:["pending"]},
+    {name:"Malaria PCR", sample:"Whole blood - EDTA", routine:"8–24 hrs", urgent:"4–6 hrs", flags:["pending"]},
     {name:"Measles / Rubella PCR Panel", sample:"NP or OP swab and Whole blood - EDTA", routine:"8–24 hrs", urgent:"4–6 hrs"},
-    {name:"Monkeypox PCR", sample:"Swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"SARS-CoV-2 Genomic Sequencing / Variant Typing", sample:"NP swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Influenza / RSV Confirmatory Testing", sample:"NP swab", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Monkeypox PCR", sample:"Swab", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"SARS-CoV-2 Genomic Sequencing / Variant Typing", sample:"NP swab", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Influenza / RSV Confirmatory Testing", sample:"NP swab", routine:"weeks", urgent:"—", flags:["send"]},
   ]},
   {dept:"Histology", note:"Specimens needing further investigation are shipped overseas to certified laboratories. Pathology advice is available locally, with overseas pathologist input for clarification.", tests:[
-    {name:"Biopsy – Malignant Diagnosis", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
-    {name:"Biopsy – In Situ Carcinoma", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
-    {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
-    {name:"Post-mortem", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
+    {name:"Biopsy – Malignant Diagnosis", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
+    {name:"Biopsy – In Situ Carcinoma", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
+    {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
+    {name:"Post-mortem", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
   ]},
   {dept:"Cytology", note:"Non-malignant results are issued once complete. Abnormal smears receive a verbal preliminary diagnosis locally, then confirmation overseas (NZ/Australia), adding 2–3 weeks.", tests:[
     {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"2 weeks", urgent:"1 hr"},
-    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"—"},
+    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"—"},
+    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"—"},
+    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"—"},
+    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"—"},
+    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"—"},
+    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"—"},
     {name:"Urine Cytology", sample:"Urine", routine:"2 weeks", urgent:"48 hrs"},
-    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 month"},
-    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"—"},
+    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"—"},
   ]},
   {dept:"Other / specialist referred tests", note:"These have no dedicated local department and are referred out as standard practice.", tests:[
-    {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"Weeks", urgent:"Weeks", flags:["send"]},
-    {name:"Any other test not held at VNH", sample:"As advised by department", routine:"Weeks", urgent:"Weeks", flags:["send"]},
+    {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Any other test not held at VNH", sample:"As advised by department", routine:"weeks", urgent:"—", flags:["send"]},
   ]},
 ];
 
@@ -671,6 +682,18 @@ function jumpToDept(el){
   dom.urgentLabel.classList.remove('active');
   render();
 }
+
+const topSearch = document.getElementById('topSearchInput');
+topSearch.addEventListener('input', function(){
+  dom.search.value = topSearch.value;
+  render();
+});
+topSearch.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    document.getElementById('directory').scrollIntoView({behavior:'smooth', block:'start'});
+    dom.search.focus();
+  }
+});
 </script>
 </body>
 </html>
