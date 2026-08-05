@@ -319,7 +319,6 @@
 
 <section class="hero">
   <div class="wrap">
-    <p class="hero-eyebrow">Start here</p>
     <h2 class="hero-title">Search the Test Directory</h2>
     <p class="hero-lede">Find routine and urgent turnaround times, sample types, and requirements for any test across the laboratory.</p>
     <form class="hero-search" id="heroSearchForm">
@@ -617,22 +616,22 @@ const DATA = [
     {name:"Retroviral Studies (beyond HIV)", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Biochemistry", note:"Core Chemistry runs on the Cobas C311 / Fujifilm analyser; Immunoassay testing runs on the E411 analyser. Available during normal working hours and after hours.", tests:[
-    {name:"Electrolytes & Minerals (Na/K/Cl/Ca/Mg/PO4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Sodium", low:"&le; 120 mmol/L", high:"&ge; 160 mmol/L"},{a:"Potassium", low:"&le; 2.5 mmol/L", high:"&ge; 6.0 mmol/L"},{a:"Calcium, Total", low:"&le; 1.625 mmol/L", high:"&ge; 3.25 mmol/L"},{a:"Magnesium", low:"&le; 0.411 mmol/L", high:"&ge; 0.822 mmol/L"}]},
+    {name:"Electrolytes & Minerals (Sodium, Na/Potassium, K/Chloride, Cl/Calcium, Ca/Magnesium, Mg/Phosphate, PO4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Sodium", low:"&le; 120 mmol/L", high:"&ge; 160 mmol/L"},{a:"Potassium", low:"&le; 2.5 mmol/L", high:"&ge; 6.0 mmol/L"},{a:"Calcium, Total", low:"&le; 1.625 mmol/L", high:"&ge; 3.25 mmol/L"},{a:"Magnesium", low:"&le; 0.411 mmol/L", high:"&ge; 3.703 mmol/L"}]},
     {name:"Bicarbonate (CO2)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
     {name:"Renal Function Tests (RFT, Urea/Cr/eGFR/UA)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Liver Function Tests (LFT, Bil/ALT/AST/ALP/TP)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Bilirubin, Total (Serum, &lt;1 yr)", high:"&ge; 256.5 &micro;mol/L"}]},
+    {name:"Liver Function Tests (LFT, Albumin, Alb/Bilirubin, Bil/Alanine Aminotransferase, ALT/Aspartate Aminotransferase, AST/Alkaline Phosphatase, ALP/Total Protein, TP/Gamma-Glutamyl Transferase, GGT)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Bilirubin, Total (Serum, &lt;1 yr)", high:"&ge; 256.5 &micro;mol/L"}]},
     {name:"Lipid Profile", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Glucose (GLU)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Glucose (&lt;4 weeks)", low:"&le; 2.22 mmol/L", high:"&ge; 22.2 mmol/L"},{a:"Glucose (&ge;4 weeks)", low:"&le; 2.775 mmol/L", high:"&ge; 22.2 mmol/L"}]},
     {name:"Fasting Glucose", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Glucose (&lt;4 weeks)", low:"&le; 2.22 mmol/L", high:"&ge; 22.2 mmol/L"},{a:"Glucose (&ge;4 weeks)", low:"&le; 2.775 mmol/L", high:"&ge; 22.2 mmol/L"}]},
     {name:"HbA1c", sample:"Whole blood - EDTA", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Cardiac & Muscle Enzymes (CK/CK-MB/LDH/AMY)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Inflammation & Immunology Markers (CRP/ASO/RF/C3/C4/TRF)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
+    {name:"Cardiac & Muscle Enzymes (Creatine Kinase, CK/Creatine Kinase-MB, CK-MB/Lactate Dehydrogenase, LDH/Amylase, AMY)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
+    {name:"Inflammation & Immunology Markers (C-reactive Protein, CRP/Antistreptolysin O, ASO/Rheumatoid Factor, RF-II/Complement Component 3/4, C3/C4/Transferrin, TRF)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"D-Dimer (DD)", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"CSF & Sterile Body Fluid Chemistry", sample:"CSF / Sterile fluids", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Urine Creatinine (UCR)", sample:"Urine", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Thyroid Function Tests (TSH/T3/T4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
+    {name:"Thyroid Function Tests (Thyroid Stimulating Hormone, TSH/Triiodothyronine, T3/Thyroxine, T4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Cardiac Troponin (TROP)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
-    {name:"Tumour Markers (PSA/AFP/CEA/CA125/CA19-9)", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
+    {name:"Tumour Markers (Prostate Specific Antigen, PSA/Alpha-Fetoprotein, AFP/Carcinoembryonic Antigen, CEA/Cancer Antigen 125, CA125/Cancer Antigen 19-9, CA19-9)", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Pregnancy Test", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Vitamin B12", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
