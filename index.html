@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VNH Laboratory Services — Clinician Resource</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d2240'/%3E%3Crect y='50' width='64' height='14' fill='%23c0392b'/%3E%3Ctext x='32' y='38' font-family='Arial, Helvetica, sans-serif' font-weight='700' font-size='30' fill='%23ffffff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --ink:#1a1a2e;
@@ -21,43 +22,53 @@
     --mono: Arial, 'Helvetica Neue', sans-serif;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;line-height:1.65;font-size:16px;}
   .wrap{max-width:none;width:100%;margin:0;padding:0 48px;}
 
   /* HEADER */
-  header.top{border-bottom:4px solid var(--red);background:var(--navy-deep);color:#ffffff;padding:22px 0 18px;}
+  header.top{border-bottom:4px solid var(--red);background:var(--navy-deep);color:#ffffff;padding:20px 0 16px;}
   header.top .wrap{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;}
   .header-updated{position:absolute;top:0;right:0;margin:0;font-family:Arial,sans-serif;font-size:11px;color:#a8c4e0;letter-spacing:.03em;}
-  .header-titlebar{display:flex;align-items:center;justify-content:center;gap:24px;width:100%;flex-wrap:wrap;}
-  .header-titlebar img.vnh-logo{background:#ffffff;border-radius:4px;padding:4px;height:64px;width:auto;object-fit:contain;flex-shrink:0;}
-  .header-titlebar img.coat-logo{height:88px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.35));flex-shrink:0;}
-  .brand-eyebrow{font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:15px;color:#a8c4e0;margin:6px 0 0;}
-  .brand-title{font-size:36px;font-weight:700;margin:0;letter-spacing:.01em;color:#ffffff;}
-  .brand-sub{font-family:Arial,sans-serif;font-size:13px;color:#a8c4e0;margin:2px 0 0;}
-  .brand-handbook{font-family:Arial,sans-serif;font-size:13px;color:#a8c4e0;margin:4px 0 0;}
-  .brand-handbook a{color:#a8c4e0;text-decoration:underline;font-weight:600;}
-  .brand-handbook strong{color:#ffffff;}
+  .header-titlebar{display:flex;align-items:center;justify-content:center;gap:22px;width:100%;flex-wrap:wrap;}
+  .header-titlebar img.vnh-logo{background:#ffffff;border-radius:4px;padding:4px;height:56px;width:auto;object-fit:contain;flex-shrink:0;}
+  .header-titlebar img.coat-logo{height:76px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.35));flex-shrink:0;}
+  .brand-eyebrow{font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:14px;color:#a8c4e0;margin:4px 0 0;}
+  .brand-title{font-size:32px;font-weight:700;margin:0;letter-spacing:.01em;color:#ffffff;}
+  .brand-sub{font-family:Arial,sans-serif;font-size:12.5px;color:#a8c4e0;margin:2px 0 0;}
 
-  /* NAV */
-  nav.jump{background:var(--navy);border-bottom:2px solid var(--red);}
-  nav.jump .nav-wrap{display:flex;align-items:center;gap:16px;padding:0;flex-wrap:wrap;}
-  nav.jump .nav-links{display:flex;flex:1 1 auto;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.03em;}
-  nav.jump a{flex:1 1 auto;text-align:center;color:#cfe0f0;text-decoration:none;padding:12px 18px;display:inline-block;border-right:1px solid rgba(255,255,255,0.1);}
+  /* NAV — sticky, scroll-spy highlighted */
+  nav.jump{background:var(--navy);border-bottom:2px solid var(--red);position:sticky;top:0;z-index:50;}
+  nav.jump .nav-wrap{display:flex;align-items:center;padding:0;flex-wrap:wrap;}
+  nav.jump .nav-links{display:flex;flex:1 1 auto;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:12.5px;letter-spacing:.02em;}
+  nav.jump a{flex:1 1 auto;text-align:center;color:#cfe0f0;text-decoration:none;padding:13px 14px;display:inline-block;border-right:1px solid rgba(255,255,255,0.1);white-space:nowrap;transition:background .15s,color .15s;}
   nav.jump a:hover{background:var(--navy-deep);color:#ffffff;}
-  nav.jump .nav-search{flex:0 0 auto;padding:8px 12px;}
-  nav.jump .nav-search input{width:200px;font-family:Arial,sans-serif;font-size:13px;padding:7px 10px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.12);color:#ffffff;border-radius:3px;}
-  nav.jump .nav-search input::placeholder{color:#cfe0f0;}
-  nav.jump .nav-search input:focus{outline:none;border-color:#ffffff;background:rgba(255,255,255,0.2);}
+  nav.jump a.active{background:var(--navy-deep);color:#ffffff;box-shadow:inset 0 -3px 0 var(--red);}
 
   /* SECTIONS */
-  section{padding:48px 0;border-bottom:1px solid var(--line);}
-  section:last-of-type{border-bottom:none;}
-  .section-eyebrow{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin:0 0 8px;font-weight:700;}
-  .section-title{font-size:22px;font-weight:700;margin:0 0 18px;color:var(--navy-deep);}
+  section{padding:56px 0;scroll-margin-top:52px;}
+  section.section-alt{background:var(--navy-soft);}
+  .section-heading{font-size:24px;font-weight:700;margin:0 0 18px;color:var(--navy-deep);display:flex;align-items:center;gap:12px;}
+  .section-heading::before{content:"";display:inline-block;width:26px;height:3px;background:var(--red);border-radius:2px;flex-shrink:0;}
   .lede{font-size:16px;color:var(--ink-soft);margin:0 0 12px;line-height:1.7;}
 
   .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;}
   @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
+
+  /* HERO — search bar only, Mayo-style minimal */
+  .hero{background:var(--navy-deep);padding:52px 0 46px;border-bottom:4px solid var(--red);text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 20%, rgba(37,99,164,0.25), transparent 45%), radial-gradient(circle at 85% 80%, rgba(192,57,43,0.18), transparent 45%);pointer-events:none;}
+  .hero .wrap{position:relative;}
+  .hero-eyebrow{font-family:Arial,sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#a8c4e0;margin:0 0 10px;font-weight:700;}
+  .hero-title{font-size:30px;font-weight:700;color:#ffffff;margin:0 0 10px;}
+  .hero-lede{font-size:15px;color:#c6d7ea;margin:0 auto 26px;max-width:600px;line-height:1.6;}
+  .hero-search{display:flex;max-width:640px;margin:0 auto;gap:0;box-shadow:0 10px 30px rgba(0,0,0,0.25);border-radius:4px;overflow:hidden;}
+  .hero-search input{flex:1 1 auto;border:none;font-family:Arial,sans-serif;font-size:17px;padding:18px 20px;color:var(--ink);background:#ffffff;}
+  .hero-search input:focus{outline:none;}
+  .hero-search button{flex:0 0 auto;border:none;background:var(--red);color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:.03em;padding:0 30px;cursor:pointer;transition:background .15s;}
+  .hero-search button:hover{background:#a53025;}
+  .hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:26px;font-family:Arial,sans-serif;font-size:13px;color:#a8c4e0;}
+  .hero-stats .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-right:7px;}
 
   /* MISSION CARD */
   .mission-card{
@@ -65,12 +76,11 @@
     font-family:Arial,sans-serif;font-size:17px;line-height:1.75;font-style:italic;
     border-left:5px solid var(--red);
   }
-  .mission-card .label{font-family:Arial,sans-serif;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#a8c4e0;margin-bottom:10px;display:block;}
 
   /* DEPARTMENT PILLS */
   .disciplines{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:18px;}
-  .discipline-pill{border:1px solid var(--navy);background:var(--paper-raised);padding:10px 14px;font-family:Arial,sans-serif;font-size:14px;color:var(--navy);border-radius:3px;text-decoration:none;display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;cursor:pointer;transition:background 0.15s, color 0.15s;font-weight:600;}
-  .discipline-pill:hover{background:var(--navy);color:#ffffff;}
+  .discipline-pill{border:1px solid var(--navy);background:var(--paper-raised);padding:10px 14px;font-family:Arial,sans-serif;font-size:14px;color:var(--navy);border-radius:3px;text-decoration:none;display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;cursor:pointer;transition:background 0.15s, color 0.15s, transform .15s;font-weight:600;}
+  .discipline-pill:hover{background:var(--navy);color:#ffffff;transform:translateY(-1px);}
 
   /* STEPS */
   .steps{counter-reset:step;list-style:none;margin:0;padding:0;}
@@ -92,28 +102,45 @@
   /* CRITERIA GRID */
   .criteria-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px;}
   @media (max-width:760px){.criteria-grid{grid-template-columns:1fr;}}
-  .criteria-col h4{font-size:13px;font-weight:700;margin:0 0 10px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
+  .criteria-col{background:var(--paper-raised);border:1px solid var(--line);border-radius:5px;padding:22px 24px;}
+  .criteria-col h4{font-size:13px;font-weight:700;margin:0 0 12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
   .criteria-col ul{margin:0;padding-left:20px;font-size:15px;line-height:1.7;}
+  .criteria-col.reject{border-color:#f0c9c5;}
   .criteria-col.reject ul li{color:#7b1c1c;}
   .criteria-col li{margin-bottom:8px;}
 
   /* HOURS TABLE */
-  .hours-table{width:100%;border-collapse:collapse;margin-top:6px;}
-  .hours-table td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top;}
+  .hours-table{width:100%;border-collapse:collapse;margin-top:6px;background:var(--paper-raised);border-radius:5px;overflow:hidden;}
+  .hours-table td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top;}
+  .hours-table tr:last-child td{border-bottom:none;}
   .hours-table td.h-cat{font-family:Arial,sans-serif;font-size:13px;color:var(--navy);width:26%;font-weight:700;}
+  .hours-table td.h-phone{font-family:Arial,sans-serif;font-size:13px;color:var(--red);width:18%;font-weight:600;}
   .status-strip{display:flex;gap:24px;flex-wrap:wrap;margin-top:22px;font-family:Arial,sans-serif;font-size:13px;color:var(--ink-soft);}
   .status-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--navy);margin-right:7px;}
 
-  /* SEARCH / FILTER TOOLBAR */
+  /* QUICK BLOOD DRAW GUIDE */
+  .subheading{font-family:Arial,sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-weight:700;margin:0 0 12px;}
+  .draw-order{list-style:none;margin:0 0 18px;padding:0;display:flex;gap:12px;flex-wrap:wrap;counter-reset:draw;}
+  .draw-order li{counter-increment:draw;position:relative;flex:1 1 160px;background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:14px 14px 14px 40px;font-family:Arial,sans-serif;}
+  .draw-order li::before{content:counter(draw);position:absolute;left:10px;top:14px;width:20px;height:20px;background:var(--navy);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+  .draw-order .tube-cap-mini{width:11px;height:26px;border-radius:2px;display:inline-block;margin-right:7px;vertical-align:middle;border:1px solid rgba(0,0,0,0.2);}
+  .draw-order .draw-name{font-size:14px;font-weight:700;color:var(--navy-deep);margin:0 0 2px;}
+  .draw-order .draw-sample{font-size:12px;color:var(--ink-soft);margin:0;}
+  .tip-block{margin:0 0 30px;padding:16px 20px;background:var(--navy-soft);border-radius:3px;border-left:4px solid var(--navy);}
+  .tip-block h4{margin:0 0 8px;font-size:14px;font-weight:700;color:var(--navy-deep);}
+  .tip-block ul{margin:0;padding-left:20px;font-size:14px;color:var(--ink-soft);line-height:1.7;}
+
+  /* SEARCH / FILTER TOOLBAR (full directory) */
   .toolbar{margin:0 0 20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
   .search-box{flex:1 1 320px;position:relative;}
   .search-box input{width:100%;font-family:Arial,sans-serif;font-size:16px;padding:13px 16px 13px 44px;border:2px solid var(--navy);background:var(--paper-raised);color:var(--ink);border-radius:3px;}
   .search-box input:focus{outline:none;border-color:var(--mid);box-shadow:0 0 0 3px rgba(37,99,164,0.15);}
   .search-box::before{content:"⌕";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--navy);}
   select#deptFilter{font-family:Arial,sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.04em;padding:0 14px;height:48px;border:2px solid var(--navy);background:var(--paper-raised);color:var(--ink);border-radius:3px;}
-  .urgent-toggle{display:flex;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.04em;color:var(--ink-soft);cursor:pointer;border:2px solid var(--line);padding:0 14px;height:48px;border-radius:3px;background:var(--paper-raised);user-select:none;}
+  .urgent-toggle{display:flex;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.04em;color:var(--ink-soft);cursor:pointer;border:2px solid var(--line);padding:0 14px;height:48px;border-radius:3px;background:var(--paper-raised);user-select:none;position:relative;}
   .urgent-toggle.active{border-color:var(--red);color:var(--red);background:var(--red-soft);}
-  .urgent-toggle input{display:none;}
+  .urgent-toggle input{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;white-space:nowrap;}
+  .urgent-toggle:focus-within{outline:2px solid var(--mid);outline-offset:2px;}
   .result-count{font-family:Arial,sans-serif;font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
 
   /* TEST DIRECTORY */
@@ -127,6 +154,7 @@
   table.tests th{text-align:left;font-family:Arial,sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-raised);padding:8px 12px;background:var(--mid);border-bottom:2px solid var(--navy);}
   table.tests td{padding:12px 12px;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top;background:var(--paper-raised);}
   table.tests tr:nth-child(even) td{background:#f0f4fa;}
+  table.tests tr:hover td{background:#e4ecf7;}
   td.col-test{width:34%;font-weight:600;color:var(--navy-deep);}
   td.col-sample{width:22%;color:var(--ink-soft);font-size:14px;}
   .sample-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:7px;vertical-align:middle;border:1px solid rgba(0,0,0,0.2);flex-shrink:0;}
@@ -139,15 +167,10 @@
   .flag.pending{background:#e5e7eb;color:#4b5563;border:1px solid #d1d5db;}
   .empty-state{text-align:center;padding:60px 0;color:var(--ink-soft);font-style:italic;font-size:16px;}
 
-  /* REFERENCE TABLE */
-  .ref-table{width:100%;border-collapse:collapse;font-size:15px;margin-top:8px;}
-  .ref-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
-  .ref-table td.r-cat{font-family:Arial,sans-serif;font-size:12px;color:var(--navy);width:28%;font-weight:700;text-transform:uppercase;}
-
   /* TUBE QUICK GUIDE */
   .tube-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:8px;}
-  .tube-card{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);background:var(--paper-raised);padding:14px;border-radius:4px;transition:box-shadow 0.15s;}
-  .tube-card:hover{box-shadow:0 2px 8px rgba(26,58,107,0.1);}
+  .tube-card{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);background:var(--paper-raised);padding:14px;border-radius:4px;transition:box-shadow 0.15s,transform .15s;}
+  .tube-card:hover{box-shadow:0 4px 12px rgba(26,58,107,0.12);transform:translateY(-1px);}
   .tube-cap{width:18px;height:42px;border-radius:4px 4px 2px 2px;flex-shrink:0;border:1px solid rgba(0,0,0,0.2);margin-top:2px;}
   .tube-info .tube-name{font-size:15px;margin:0 0 3px;font-weight:600;color:var(--navy-deep);}
   .tube-info .tube-additive{font-family:Arial,sans-serif;font-size:12px;color:var(--ink-soft);margin:0;}
@@ -155,6 +178,41 @@
   /* LEGEND */
   .legend{margin-top:18px;display:flex;gap:20px;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:13px;color:var(--ink-soft);}
   .legend span.flag{margin-left:0;margin-right:6px;}
+
+  /* CONTACTS */
+  .contacts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:8px;}
+  .contact-card{border:1px solid var(--line);background:var(--paper-raised);padding:16px 18px;border-radius:4px;transition:box-shadow .15s;}
+  .contact-card:hover{box-shadow:0 4px 12px rgba(26,58,107,0.1);}
+  .contact-card h4{margin:0 0 6px;font-size:16px;font-weight:700;color:var(--navy);}
+  .contact-card p{margin:0;font-size:13.5px;color:var(--ink-soft);font-family:Arial,sans-serif;line-height:1.6;}
+  /* REQUEST FORM GUIDE — boxed callout so it stands out from the plain numbered steps */
+  .form-guide-callout{margin-top:16px;background:var(--paper-raised);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:5px;padding:6px 20px 2px;box-shadow:0 2px 10px rgba(13,34,64,0.07);}
+  .form-guide-list{margin:0;padding:0;border-top:none;}
+  .form-guide-item{padding:16px 0;border-bottom:1px solid var(--line);}
+  .form-guide-item:last-child{border-bottom:none;}
+  .form-guide-item dt{font-size:15px;font-weight:700;color:var(--navy-deep);margin:0 0 4px;}
+  .form-guide-item dd{margin:0;font-size:14px;color:var(--ink-soft);font-family:Arial,sans-serif;line-height:1.6;}
+
+  /* HANDBOOK CALLOUT */
+  .handbook-card{display:flex;align-items:center;gap:26px;background:var(--navy-deep);border-radius:6px;padding:32px 36px;color:#e8f0f8;flex-wrap:wrap;}
+  .handbook-icon{width:56px;height:56px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+  .handbook-text{flex:1 1 320px;}
+  .handbook-text h3{margin:0 0 6px;font-size:19px;color:#ffffff;}
+  .handbook-text p{margin:0;font-size:14.5px;color:#c6d7ea;line-height:1.6;}
+  .handbook-btn{flex:0 0 auto;background:var(--red);color:#ffffff;text-decoration:none;font-family:Arial,sans-serif;font-weight:700;font-size:14px;letter-spacing:.03em;padding:14px 28px;border-radius:4px;transition:background .15s;white-space:nowrap;}
+  .handbook-btn:hover{background:#a53025;}
+
+  /* PERMALINK ICON */
+  .row-link{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:13px;margin-left:6px;padding:0 2px;vertical-align:1px;font-family:Arial,sans-serif;opacity:0.55;}
+  .row-link:hover{opacity:1;color:var(--navy);}
+  tr.row-highlight{outline:2px solid var(--mid);outline-offset:-2px;}
+  .copy-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy-deep);color:#fff;padding:9px 18px;border-radius:20px;font-family:Arial,sans-serif;font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,0.25);opacity:0;pointer-events:none;transition:opacity 0.2s;z-index:999;}
+  .copy-toast.show{opacity:1;}
+
+  /* BACK TO TOP */
+  .back-to-top{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;background:var(--navy-deep);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.3);opacity:0;pointer-events:none;transition:opacity .2s,transform .15s;z-index:998;}
+  .back-to-top.show{opacity:1;pointer-events:auto;}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--red);}
 
   /* FOOTER */
   footer{padding:24px 0 50px;font-family:Arial,sans-serif;font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:2px solid var(--navy);}
@@ -165,19 +223,21 @@
 
   @media (max-width:680px){
     .wrap{padding:0 18px;}
-    header.top{padding:16px 0 14px;}
-    .brand-title{font-size:24px;}
-    .brand-sub{font-size:12px;}
+    header.top{padding:14px 0 12px;}
+    .brand-title{font-size:22px;}
     .header-updated{position:static;margin:0 0 6px;text-align:right;width:100%;}
-    .header-titlebar img.vnh-logo{height:44px;}
-    .header-titlebar img.coat-logo{height:60px;}
-    nav.jump .nav-wrap{gap:0;flex-wrap:wrap;}
-    nav.jump a{padding:10px 14px;font-size:12px;}
-    nav.jump .nav-search{flex:1 1 100%;padding:10px 14px;}
-    nav.jump .nav-search input{width:100%;}
-    section{padding:28px 0;}
-    .section-title{font-size:19px;}
+    .header-titlebar img.vnh-logo{height:40px;}
+    .header-titlebar img.coat-logo{height:54px;}
+    nav.jump a{padding:10px 12px;font-size:11.5px;}
+    section{padding:34px 0;}
+    .section-heading{font-size:19px;gap:9px;}
     .lede{font-size:15px;}
+    .hero{padding:38px 0 34px;}
+    .hero-title{font-size:22px;}
+    .hero-search{flex-direction:column;box-shadow:none;}
+    .hero-search input{padding:15px 16px;border-radius:4px 4px 0 0;}
+    .hero-search button{padding:14px;border-radius:0 0 4px 4px;}
+    .hero-stats{gap:14px 20px;}
     .mission-card{font-size:15px;padding:20px 18px;}
     .hours-table td{padding:8px 8px;font-size:14px;}
     .toolbar{flex-direction:column;align-items:stretch;}
@@ -190,14 +250,47 @@
     td.col-sample::before{content:"Sample: ";color:var(--ink-soft);font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;font-weight:700;}
     td.col-routine::before{content:"Routine: ";color:var(--ink-soft);font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;font-weight:700;}
     td.col-urgent::before{content:"Urgent: ";color:var(--ink-soft);font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;font-weight:700;}
+    .handbook-card{padding:24px;text-align:center;justify-content:center;}
+    .back-to-top{width:40px;height:40px;bottom:18px;right:18px;}
+    .draw-order{gap:8px;}
+    .draw-order li{flex:1 1 130px;padding:12px 12px 12px 34px;}
   }
+
+  /* PRINT */
+  @media print{
+    body{background:#fff;font-size:11.5pt;}
+    .wrap{padding:0 12px;max-width:none;}
+    header.top{background:#fff !important;color:#000 !important;border-bottom:2px solid #000;padding:8px 0;}
+    header.top .brand-title,header.top .brand-eyebrow,header.top .brand-sub,header.top .header-updated{color:#000 !important;}
+    header.top .header-titlebar img.coat-logo{filter:none;}
+    nav.jump,.hero,.back-to-top{display:none !important;}
+    .toolbar,.result-count,.empty-state,.row-link,.copy-toast{display:none !important;}
+    section{padding:14px 0;border-bottom:1px solid #999;break-inside:avoid;background:#fff !important;}
+    .mission-card{background:#fff;color:#000;border:1px solid #000;}
+    .dept-head{background:#fff !important;border:1px solid #000;}
+    .dept-name{color:#000 !important;}
+    .dept-count{color:#333 !important;}
+    table.tests thead{display:table-header-group;}
+    table.tests, table.tests tbody, table.tests tr, table.tests td{display:table-cell;width:auto !important;}
+    table.tests{display:table;width:100%;}
+    table.tests tbody tr{display:table-row;}
+    table.tests tr:nth-child(even) td{background:#f2f2f2 !important;}
+    table.tests th{background:#e5e5e5 !important;color:#000 !important;}
+    td.col-sample::before,td.col-routine::before,td.col-urgent::before{content:none !important;}
+    a[href]::after{content:"";}
+    .criteria-grid,.tube-grid,.disciplines{page-break-inside:avoid;}
+    footer{border-top:1px solid #000;}
+    .handbook-card{background:#fff !important;color:#000 !important;border:1px solid #000;}
+    .handbook-btn{display:none;}
+  }
+
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap header-wrap">
-    <p class="header-updated">Last updated July 2026</p>
+    <p class="header-updated">Last updated August 2026</p>
     <div class="header-titlebar">
       <img src="data:image/png;base64,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" class="vnh-logo" alt="Vanuatu National Hospital">
       <h1 class="brand-title">VNH Laboratory Services</h1>
@@ -205,35 +298,44 @@
     </div>
     <p class="brand-eyebrow">Vanuatu National Hospital &middot; Department of Laboratory Services</p>
     <p class="brand-sub">A guide to specimens, testing, and turnaround</p>
-    <p class="brand-handbook"><a href="VNH_Laboratory_Handbook.pdf" target="_blank">Click here for VNH Laboratory Handbook</a></p>
   </div>
 </header>
 
-<nav class="jump">
+<nav class="jump" id="mainNav">
   <div class="wrap nav-wrap">
     <div class="nav-links">
-      <a href="#intro">Intro</a>
-      <a href="#mission">Mission</a>
-      <a href="#requesting">Requesting a sample</a>
-      <a href="#criteria">Specimen criteria</a>
-      <a href="#quickguide">Quick guide</a>
-      <a href="#hours">Lab hours</a>
-      <a href="#directory">Test directory</a>
-      <a href="#referred">Referred tests</a>
-      <a href="VNH_Laboratory_Handbook.pdf" target="_blank">Lab Handbook</a>
-    </div>
-    <div class="nav-search">
-      <input type="text" id="topSearchInput" placeholder="Search a test&hellip;" autocomplete="off">
+      <a href="#who-we-are" data-section="who-we-are">Who We Are</a>
+      <a href="#mission" data-section="mission">Our Mission</a>
+      <a href="#directory" data-section="directory">Test Directory</a>
+      <a href="#requesting" data-section="requesting">How to Request a Sample</a>
+      <a href="#quickguide" data-section="quickguide">Specimen Collection Quick Guide</a>
+      <a href="#criteria" data-section="criteria">Specimen Criteria</a>
+      <a href="#hours" data-section="hours">Laboratory Hours</a>
+      <a href="#contacts" data-section="contacts">Contact Us</a>
+      <a href="#handbook" data-section="handbook">Handbook</a>
     </div>
   </div>
 </nav>
 
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Start here</p>
+    <h2 class="hero-title">Search the Test Directory</h2>
+    <p class="hero-lede">Find routine and urgent turnaround times, sample types, and requirements for any test across the laboratory.</p>
+    <form class="hero-search" id="heroSearchForm">
+      <input type="text" id="heroSearch" aria-label="Search the test directory" placeholder="Search a test — e.g. troponin, FBC, blood culture…" autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</section>
+
 <div class="wrap">
 
-  <section id="intro">
-    <h2 class="section-title">Welcome to VNH Laboratory Services</h2>
-    <p class="lede">The Vanuatu National Hospital (VNH) Laboratory Department provides quality diagnostic services to support patient care, disease surveillance, and public health programs throughout Vanuatu. This website serves as a practical resource for clinicians and healthcare workers, providing information on available laboratory tests, specimen collection requirements, sample transport, referral testing, laboratory contacts, and service information.</p>
-    <p class="lede">Our laboratory team is committed to delivering accurate, reliable, and timely results that support the prevention, diagnosis, treatment, and monitoring of disease. Services are provided across a range of laboratory disciplines; Biochemistry, Haematology, Blood Bank and Transfusion, Microbiology, Serology, Tuberculosis, Histology, Cytology, Molecular, Phlebotomy, and Surveillance Testing.</p>
+  <section id="who-we-are">
+    <h2 class="section-heading">Who We Are</h2>
+    <p class="lede">The Vanuatu National Hospital (VNH) Laboratory Department provides diagnostic testing to support patient care, disease surveillance, and public health programs across Vanuatu. Use this site to find test information, specimen collection requirements, sample transport, referred testing, and laboratory contacts.</p>
+    <p class="lede">Our team is committed to accurate, reliable, and timely results. We provide testing across Biochemistry, Haematology, Blood Bank and Transfusion, Microbiology, Serology, Tuberculosis, Histology, Cytology, Molecular, Phlebotomy, and Surveillance Testing.</p>
     <div class="disciplines">
       <a href="#directory" class="discipline-pill" data-dept="Biochemistry" onclick="jumpToDept(this)">Biochemistry</a>
       <a href="#directory" class="discipline-pill" data-dept="Haematology" onclick="jumpToDept(this)">Haematology</a>
@@ -246,83 +348,119 @@
       <a href="#directory" class="discipline-pill" data-dept="Molecular laboratory" onclick="jumpToDept(this)">Molecular</a>
       <a href="#directory" class="discipline-pill" data-dept="Haematology" onclick="jumpToDept(this)">Phlebotomy</a>
     </div>
-    <p class="lede" style="margin-top:18px;font-size:14.5px;">This site is regularly updated to ensure users have access to the most current laboratory information. Feedback and suggestions are always welcome as we continue to improve our services and support healthcare delivery across Vanuatu.</p>
+    <p class="lede" style="margin-top:18px;font-size:14.5px;">This site is updated regularly. If you notice a mistake or have a suggestion, please tell the laboratory team.</p>
   </section>
 
-  <section id="mission">
-    <p class="section-eyebrow">Mission</p>
+  <section id="mission" class="section-alt">
+    <h2 class="section-heading">Mission &amp; vision</h2>
     <div class="mission-card">
       "Our vision is to have an integrated and decentralized health system that promotes an effective, efficient and equitable health services for the good health and general wellbeing of all people in Vanuatu."
     </div>
   </section>
 
-  <section id="requesting">
-    <p class="section-eyebrow">For clinicians</p>
-    <h2 class="section-title">How to request a sample</h2>
-    <p class="lede">Routine and urgent requests are handled differently — make sure the request form reflects the true urgency.</p>
+  <section id="directory">
+    <h2 class="section-heading">Test Directory</h2>
+    <p class="lede">Search by test name, sample type, or department. Routine and urgent turnaround times are shown side by side. Sensitive tests (INR, electrolytes, fasting glucose) are always processed immediately, even if not marked urgent.</p>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" aria-label="Search test directory by test name, sample, or department" placeholder="Search a test — e.g. troponin, FBC, blood culture…" autocomplete="off">
+      </div>
+      <select id="deptFilter" aria-label="Filter by department"></select>
+      <label class="urgent-toggle" id="urgentToggleLabel">
+        <input type="checkbox" id="urgentToggle">
+        Urgent path only
+      </label>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+    <div id="results"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">No matching test. Try a shorter search term.</div>
+
+    <div class="legend">
+      <div><span class="flag crit">CRITICAL</span>has a critical-value alert — the lab will phone you with this result</div>
+      <div><span class="flag send">SEND-AWAY</span>not tested on-site — sent to another laboratory, results take days to weeks</div>
+      <div><span class="flag pending">PENDING</span>not currently available — check with the department before requesting</div>
+    </div>
+  </section>
+
+  <section id="requesting" class="section-alt">
+    <h2 class="section-heading">How to Request a Sample</h2>
+    <p class="lede">Routine and urgent requests are handled differently. Make sure the request form matches the true urgency.</p>
     <ol class="steps">
       <li>
-        <h4>Complete the request form fully</h4>
-        <p>Include patient first name, surname, date of birth or age, hospital number (where applicable), gender, specimen type, collection date, date of symptom onset, and the requesting clinician's name.</p>
+        <h4>Use the correct request form for the test</h4>
+        <p>The lab uses four different request forms. Using the wrong one is a common cause of delay or rejection — check below before you send the specimen.</p>
+        <div class="form-guide-callout">
+          <dl class="form-guide-list">
+  <div class="form-guide-item">
+    <dt>General Laboratory Request Form</dt>
+    <dd>All tests except those listed below.</dd>
+  </div>
+  <div class="form-guide-item">
+    <dt>Crossmatch / Transfusion Request Form</dt>
+    <dd>Blood Bank &amp; Transfusion requests including crossmatch, blood grouping, blood product requests.</dd>
+  </div>
+  <div class="form-guide-item">
+    <dt>TB Request Form</dt>
+    <dd>Tuberculosis testing.</dd>
+  </div>
+  <div class="form-guide-item">
+    <dt>Surveillance Request Form</dt>
+    <dd>All Molecular Laboratory testing: GeneXpert Respiratory Panel, GeneXpert Chlamydia / Gonorrhoea, Bordetella pertussis PCR, Leptospirosis PCR, Dengue / Zika / Chikungunya PCR Panel, Malaria PCR, Measles / Rubella PCR Panel, Monkeypox PCR, SARS-CoV-2 Genomic Sequencing, Influenza / RSV Confirmatory Testing.</dd>
+  </div>
+</dl>
+        </div>
       </li>
       <li>
-        <h4>Flag urgent requests clearly</h4>
-        <p>Mark the form URGENT if the result is needed before the next routine reporting cycle and will directly affect patient management. Unmarked specimens are processed as routine.</p>
+        <h4>Complete the request form fully</h4>
+        <p>Include: patient first name, surname, date of birth or age, hospital number (if known), gender, specimen type, collection date, date symptoms started, and the requesting clinician's name and signature. Use a separate request form for each different sample type. Forms without a printed name and signature from the requesting clinician cannot be processed.</p>
+      </li>
+      <li>
+        <h4>Mark urgent requests clearly</h4>
+        <p>Write URGENT on the form if the result is needed before the next routine reporting round, and will change how the patient is managed. If a specimen is not marked, it is processed as routine.</p>
       </li>
       <li>
         <h4>Use the correct container for the test</h4>
-        <p>Check the specimen criteria below — wrong or inappropriate containers are a common reason for specimen rejection.</p>
+        <p>Check the specimen criteria section below. The wrong container is a common reason a specimen is rejected.</p>
       </li>
       <li>
         <h4>Send the specimen promptly</h4>
-        <p>Deliver to laboratory reception during normal working hours, or to the on-call laboratory scientist out of hours. A phone call ahead of an urgent or unusual specimen helps the lab prepare.</p>
+        <p>Deliver to laboratory reception during normal working hours, or to the on-call laboratory scientist out of hours. Call ahead for an urgent or unusual specimen so the lab can prepare.</p>
       </li>
       <li>
-        <h4>For additional tests requested verbally</h4>
-        <p>Verbal add-on requests (e.g. by phone) must be made within 3 hours of specimen collection, and must include the additional test requested, the requesting clinician's name, and the date and time of the request.</p>
+        <h4>Adding a test after the specimen is sent</h4>
+        <p>To add a test by phone, call within 3 hours of specimen collection. Give the test name, your name, and the date and time of the request.</p>
       </li>
     </ol>
     <div class="crit-block">
       <h4>Out-of-hours requests</h4>
-      <p>Only request urgent analysis out of normal working hours if the result is needed before the next full working day and is likely to directly affect patient management. Specimens without a clear urgency note may be delayed or treated as routine — when in doubt, call the on-call laboratory scientist.</p>
-    </div>
-  </section>
-
-  <section id="criteria">
-    <p class="section-eyebrow">Before you send</p>
-    <h2 class="section-title">Specimen criteria</h2>
-    <div class="criteria-grid">
-      <div class="criteria-col">
-        <h4>Minimum acceptance criteria</h4>
-        <ul>
-          <li>Specimen and request form both carry a minimum of four patient identifiers (name, surname, DOB/age, hospital number, or gender)</li>
-          <li>Specimen type and collection date are recorded</li>
-          <li>Date of onset of symptoms is recorded</li>
-          <li>Requesting clinician's initials are present</li>
-          <li>Specimen is submitted in the correct, authorized container for that test</li>
-          <li>Sputum specimens are received in a biohazard transport bag</li>
-        </ul>
-      </div>
-      <div class="criteria-col reject">
-        <h4>Common rejection reasons</h4>
-        <ul>
-          <li>Form or specimen missing the minimum identifiers above</li>
-          <li>Haemolysed sample for biochemistry, FBC, cross-match, or blood culture</li>
-          <li>Mislabelled or inappropriate specimen container</li>
-          <li>Clotted sample submitted for FBC</li>
-          <li>Sample drawn from an IV line for FBC or biochemistry</li>
-          <li>Neonatal bilirubin sample not wrapped in aluminium foil</li>
-          <li>Saliva submitted instead of sputum</li>
-          <li>Specimen received leaking, unsanitary, or with exterior contamination</li>
-        </ul>
-      </div>
+      <p>Only request urgent testing outside normal hours if the result is needed before the next full working day, and will change how the patient is managed. If a specimen has no urgency note, it may be delayed or treated as routine. When in doubt, call the on-call laboratory scientist.</p>
     </div>
   </section>
 
   <section id="quickguide">
-    <p class="section-eyebrow">At a glance</p>
-    <h2 class="section-title">Quick guide — sample types &amp; tubes/containers</h2>
-    <p class="lede">Match the sample type to the correct tube or container before collection — the wrong tube is one of the most common reasons a specimen is rejected.</p>
+    <h2 class="section-heading">Specimen Collection Quick Guide</h2>
+
+    <p class="subheading">Quick blood draw guide — order of draw</p>
+    <ol class="draw-order">
+      <li><span class="tube-cap-mini" style="background:#e8e3c9;"></span><p class="draw-name">Blood culture bottle</p><p class="draw-sample">Aerobic/anaerobic</p></li>
+      <li><span class="tube-cap-mini" style="background:#7fb8d6;"></span><p class="draw-name">Coagulation / citrate</p><p class="draw-sample">Light blue top</p></li>
+      <li><span class="tube-cap-mini" style="background:#c0463f;"></span><p class="draw-name">Serum, with or without gel</p><p class="draw-sample">Red top</p></li>
+      <li><span class="tube-cap-mini" style="background:#9b7fc4;"></span><p class="draw-name">EDTA</p><p class="draw-sample">Purple top</p></li>
+    </ol>
+    <div class="tip-block">
+      <h4>Fast reminders</h4>
+      <ul>
+        <li>Tourniquet on for no more than 1 minute — release once blood is flowing</li>
+        <li>Clean the site with 70% alcohol in an outward spiral and let it air-dry before puncturing</li>
+        <li>Invert additive tubes gently 5–8 times — never shake</li>
+        <li>Label every tube at the bedside before moving to the next patient</li>
+      </ul>
+    </div>
+
+    <p class="subheading">Sample types &amp; containers</p>
+    <p class="lede">Match the sample type to the correct tube or container before collecting — the wrong tube is one of the most common reasons a specimen is rejected.</p>
     <div class="tube-grid">
       <div class="tube-card"><div class="tube-cap" style="background:#9b7fc4;"></div><div class="tube-info"><p class="tube-name">Whole blood – EDTA</p><p class="tube-additive">Lavender top</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#7fb8d6;"></div><div class="tube-info"><p class="tube-name">Plasma – Sodium Citrate</p><p class="tube-additive">Light blue top</p></div></div>
@@ -340,70 +478,105 @@
     </div>
   </section>
 
+  <section id="criteria" class="section-alt">
+    <h2 class="section-heading">Specimen Criteria</h2>
+    <div class="criteria-grid">
+      <div class="criteria-col">
+        <h4>Minimum acceptance criteria</h4>
+        <ul>
+          <li>Specimen and request form both have at least four patient identifiers (name, surname, DOB/age, hospital number, or gender)</li>
+          <li>Specimen type and collection date are recorded</li>
+          <li>Date symptoms started is recorded</li>
+          <li>Requesting clinician's name/initials and signature are on the form</li>
+          <li>Specimen is in the correct, approved container for that test</li>
+          <li>Sputum specimens are in a biohazard transport bag</li>
+        </ul>
+      </div>
+      <div class="criteria-col reject">
+        <h4>Common rejection reasons</h4>
+        <ul>
+          <li>Form or specimen missing the identifiers listed above</li>
+          <li>Haemolysed sample for biochemistry, FBC, cross-match, or blood culture</li>
+          <li>Wrong label, or wrong container for the test</li>
+          <li>Clotted sample sent for FBC</li>
+          <li>Sample taken from an IV line for FBC or biochemistry</li>
+          <li>Neonatal bilirubin sample not wrapped in aluminium foil</li>
+          <li>Saliva sent instead of sputum</li>
+          <li>Specimen leaking, dirty, or contaminated on the outside</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="hours">
-    <p class="section-eyebrow">Service times</p>
-    <h2 class="section-title">Laboratory hours &amp; on-call</h2>
+    <h2 class="section-heading">Laboratory Hours</h2>
+    <p class="lede">During restricted (after-hours, weekend, and public holiday) periods, only one laboratory scientist is typically on duty, so service is limited to urgent and restricted tests. Only request an urgent test out of hours if the result will directly change patient management.</p>
     <table class="hours-table">
-      <tr><td class="h-cat">Monday – Friday</td><td>Working hours 08:00 – 12:00, lunch break 12:00 – 13:00, service resumes through the afternoon</td></tr>
-      <tr><td class="h-cat">Out of hours</td><td>On-call service, 17:00 – 06:00</td></tr>
-      <tr><td class="h-cat">Weekends</td><td>Restricted service, on-call 24 hours</td></tr>
-      <tr><td class="h-cat">Public holidays</td><td>Restricted service, on-call 24 hours</td></tr>
-      <tr><td class="h-cat">Phlebotomy collection</td><td>08:00 – 17:00; weekend collection by arrangement with on-call staff only</td></tr>
-      <tr><td class="h-cat">Data entry, reception &amp; report dispatch</td><td>24 hours</td></tr>
+      <tr><td class="h-cat">Monday – Friday</td><td>Full service, 08:00–12:00 and 13:00–17:00</td><td class="h-phone">See contacts below</td></tr>
+      <tr><td class="h-cat">Weekday, out of hours</td><td>Restricted / on-call, 17:00–08:00 — primarily emergency department and urgent requests</td><td class="h-phone">+678 22100 (ask for on-call scientist)</td></tr>
+      <tr><td class="h-cat">Weekends &amp; public holidays</td><td>Restricted service, on-call 24 hours — focused on inpatients and Accident &amp; Emergency</td><td class="h-phone">+678 22100 (ask for on-call scientist)</td></tr>
+      <tr><td class="h-cat">Phlebotomy collection</td><td>08:00–17:00 weekdays; weekend collection by arrangement with on-call staff only</td><td class="h-phone">Ext 1954</td></tr>
+      <tr><td class="h-cat">Routine result dispatch</td><td>Sent to ward pigeonholes twice daily, around 12:00 and before 16:00</td><td class="h-phone">—</td></tr>
     </table>
     <div class="status-strip" id="statusStrip"></div>
   </section>
 
-  <section id="directory">
-    <p class="section-eyebrow">Test directory</p>
-    <h2 class="section-title">Searchable test directory</h2>
-    <p class="lede">Search by test name or filter by department. Routine and urgent turnaround times are shown side by side — sensitive tests (INR, electrolytes, fasting glucose) are processed immediately regardless of the urgent flag.</p>
-
-    <div class="toolbar">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search a test — e.g. troponin, FBC, blood culture…" autocomplete="off">
+  <section id="contacts" class="section-alt">
+    <h2 class="section-heading">Contact Us</h2>
+    <p class="lede">Laboratory Department, Vanuatu National Hospital, PMB 9013, Port Vila. Switchboard: <strong>+678 22100</strong>. From inside the hospital, dial the extension directly. From outside, phone the Switchboard and ask to be connected. There is no separate after-hours line — for on-call queries, phone the Switchboard and ask for the on-call laboratory scientist.</p>
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <h4>Ext 1949</h4>
+        <p>Haematology &middot; Biochemistry &middot; Tuberculosis (TB) &middot; Histology &middot; Cytology &middot; Inventory / Store &middot; Quality Officer &middot; Principal Laboratory Officer</p>
       </div>
-      <select id="deptFilter"></select>
-      <label class="urgent-toggle" id="urgentToggleLabel">
-        <input type="checkbox" id="urgentToggle">
-        Urgent path only
-      </label>
-    </div>
-
-    <div class="result-count" id="resultCount"></div>
-    <div id="results"></div>
-    <div class="empty-state" id="emptyState" style="display:none;">No matching test. Try a shorter search term, or check the Referred tests section below.</div>
-
-    <div class="legend">
-      <div><span class="flag crit">CRITICAL</span>has a defined critical-value alert &amp; phone-notification requirement</div>
-      <div><span class="flag send">SEND-AWAY</span>not processed on-site, referred overseas</div>
-      <div><span class="flag pending">PENDING</span>not currently available — listed for reference, check with department before requesting</div>
+      <div class="contact-card">
+        <h4>Ext 1950</h4>
+        <p>Blood Bank &amp; Transfusion &middot; Serology &amp; Molecular &middot; Microbiology &middot; Tuberculosis (TB) &middot; Inventory / Store &middot; Quality Officer</p>
+      </div>
+      <div class="contact-card">
+        <h4>Ext 1954</h4>
+        <p>Reception &amp; Phlebotomy</p>
+      </div>
+      <div class="contact-card">
+        <h4>Ext 1968</h4>
+        <p>Blood Bank counselling room</p>
+      </div>
     </div>
   </section>
 
-  <section id="referred">
-    <p class="section-eyebrow">Send-away testing</p>
-    <h2 class="section-title">Tests referred for further testing</h2>
-    <p class="lede">Tests marked <span class="flag send">SEND-AWAY</span> in the directory above are not processed at VNH — they are referred out, and results take days to weeks rather than hours. Discuss timing with the relevant department before sending. If you need a test that isn't listed anywhere in the directory, contact the relevant department directly — they can advise whether it can be referred out.</p>
+  <section id="handbook">
+    <h2 class="section-heading">Handbook</h2>
+    <div class="handbook-card">
+      <div class="handbook-icon">&#128218;</div>
+      <div class="handbook-text">
+        <h3>VNH Laboratory Services Handbook</h3>
+        <p>The complete reference: specimen collection procedures, packaging and referral, surveillance reporting, transfusion guidance, and the full department-by-department test directory.</p>
+      </div>
+      <a class="handbook-btn" href="VNH_Laboratory_Handbook.pdf" target="_blank">Open the Handbook (PDF)</a>
+    </div>
   </section>
 
   <footer>
-    <span>Internal reference only — for more information, see the VNH Lab Handbook</span>
+    <span>Internal reference only &mdash; for more information, see the VNH Lab Handbook</span>
     <span>Generated for clinician use</span>
   </footer>
 </div>
 
+<div class="copy-toast" id="copyToast"></div>
+<button class="back-to-top" id="backToTop" title="Back to top" type="button">&#8593;</button>
+
 <script>
+
 const DATA = [
   {dept:"Haematology", note:"Includes malaria diagnostics. INR and electrolytes are treated as sensitive tests and processed immediately regardless of urgency flag.", tests:[
     {name:"Full Blood Count (FBC)", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"15–30 mins"},
     {name:"White Blood Cell Differential Count", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
     {name:"Reticulocyte Count", sample:"Whole blood - EDTA", routine:"4 hrs", urgent:"1 hr"},
     {name:"Peripheral Blood Film Examination", sample:"Whole blood - EDTA", routine:"24 hrs", urgent:"2 hrs"},
-    {name:"Erythrocyte Sedimentation Rate (ESR)", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"1.5 hrs"},
+    {name:"Erythrocyte Sedimentation Rate (ESR)", sample:"Whole blood - EDTA", routine:"1 hr 30 mins", urgent:"1 hr"},
     {name:"White Blood Cell Count – Manual", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
-    {name:"Prothrombin Time (PT) / International Normalised Ratio (INR) – Automated", sample:"Plasma - Sodium Citrate", routine:"1 hr", urgent:"30 mins", flags:["crit"]},
-    {name:"International Normalised Ratio (INR) – Manual", sample:"Plasma - Sodium Citrate", routine:"1 hr", urgent:"30 mins", flags:["crit"]},
+    {name:"Prothrombin Time (PT) / International Normalised Ratio (INR) – Automated", sample:"Plasma - Sodium Citrate", routine:"1 hr", urgent:"30 mins", flags:["crit"], crit:[{a:"Prothrombin Time", high:"&gt; 17 sec"},{a:"INR", high:"&ge; 5.0"}]},
+    {name:"International Normalised Ratio (INR) – Manual", sample:"Plasma - Sodium Citrate", routine:"1 hr", urgent:"30 mins", flags:["crit"], crit:[{a:"INR", high:"&ge; 5.0"}]},
     {name:"Malaria Rapid Diagnostic Test (RDT)", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
     {name:"Malaria Microscopy", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"1 hr"},
     {name:"Microfilariae Parasite Screening", sample:"Whole blood - EDTA", routine:"2 hrs", urgent:"—"},
@@ -412,14 +585,14 @@ const DATA = [
   {dept:"Blood bank / transfusion", note:"Includes donor recruitment. Cryoprecipitate has the longest lead time of all blood products — plan ahead.", tests:[
     {name:"ABO and Rh(D) Blood Grouping", sample:"Whole blood - EDTA or Serum", routine:"30 mins", urgent:"15 mins"},
     {name:"Cross-Match Compatibility Testing", sample:"Whole blood - EDTA or Serum", routine:"2 hrs", urgent:"1 hr"},
-    {name:"Direct Coomb's Test (DCT)", sample:"Whole blood - EDTA", routine:"1 hr", urgent:"30 mins"},
-    {name:"Indirect Coomb's Test (ICT)", sample:"Whole blood - EDTA or Serum", routine:"1 hr", urgent:"30 mins"},
+    {name:"Coomb's Test (DCT/ICT)", sample:"Whole blood - EDTA or Serum", routine:"1 hr", urgent:"30 mins"},
+    {name:"Indirect Antiglobulin Test (IAT)", sample:"Whole blood - EDTA or Serum", routine:"1 hr", urgent:"30 mins"},
     {name:"Packed Red Blood Cell (PRBC) Preparation and Issue", sample:"N/A", routine:"2 hrs", urgent:"1 hr"},
     {name:"Fresh Whole Blood Preparation and Issue", sample:"N/A", routine:"2 hrs", urgent:"1 hr"},
     {name:"Fresh Frozen Plasma (FFP) Preparation and Issue", sample:"N/A", routine:"2 hrs", urgent:"1 hr"},
     {name:"Platelet Concentrate Preparation and Issue", sample:"N/A", routine:"4 hrs", urgent:"2 hrs"},
     {name:"Platelet-Rich Plasma (PRP) Preparation and Issue", sample:"N/A", routine:"4 hrs", urgent:"2 hrs"},
-    {name:"Cryoprecipitate Preparation and Issue", sample:"N/A", routine:"24 hrs", urgent:"—"},
+    {name:"Cryoprecipitate Preparation and Issue", sample:"N/A", routine:"24 hrs", urgent:"24 hrs"},
     {name:"Blood Donor Recruitment and Assessment", sample:"N/A", routine:"20 mins", urgent:"15 mins"},
     {name:"Blood Donor Collection", sample:"N/A", routine:"30 mins", urgent:"15 mins"},
   ]},
@@ -435,20 +608,22 @@ const DATA = [
     {name:"Syphilis Treponema pallidum (TP) Rapid Test", sample:"Whole blood - EDTA or Serum", routine:"24 hrs", urgent:"2 hrs"},
     {name:"Dengue Rapid Diagnostic Test (NS1 Antigen and/or IgM/IgG)", sample:"Whole blood - EDTA or Serum", routine:"24 hrs", urgent:"2 hrs"},
     {name:"Leptospirosis Rapid Diagnostic Test", sample:"Whole blood - EDTA or Serum", routine:"24 hrs", urgent:"2 hrs"},
-    {name:"Leptospirosis Confirmation / Serotyping", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Dengue Serotyping", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Autoimmune Antibody Testing (SLE, ANA, anti-dsDNA)", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Membrane Antibody Testing", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Leptospirosis Confirmation / Serotyping", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Dengue Serotyping", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Autoimmune Antibody Testing (SLE, ANA, anti-dsDNA)", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Membrane Antibody Testing", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
     {name:"Measles / Rubella Serology (ELISA)", sample:"Serum", routine:"24 hrs", urgent:"2 hrs"},
-    {name:"Mumps / Chickenpox Serology", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Retroviral Studies (beyond HIV)", sample:"Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Mumps / Chickenpox Serology", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Retroviral Studies (beyond HIV)", sample:"Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Biochemistry", note:"Core Chemistry runs on the Cobas C311 / Fujifilm analyser; Immunoassay testing runs on the E411 analyser. Available during normal working hours and after hours.", tests:[
-    {name:"Electrolytes & Minerals (Na/K/Cl/Ca/Mg/PO4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
+    {name:"Electrolytes & Minerals (Na/K/Cl/Ca/Mg/PO4)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Sodium", low:"&le; 120 mmol/L", high:"&ge; 160 mmol/L"},{a:"Potassium", low:"&le; 2.5 mmol/L", high:"&ge; 6.0 mmol/L"},{a:"Calcium, Total", low:"&le; 1.625 mmol/L", high:"&ge; 3.25 mmol/L"},{a:"Magnesium", low:"&le; 0.411 mmol/L", high:"&ge; 0.822 mmol/L"}]},
+    {name:"Bicarbonate (CO2)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
     {name:"Renal Function Tests (RFT, Urea/Cr/eGFR/UA)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Liver Function Tests (LFT, Bil/ALT/AST/ALP/TP)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
+    {name:"Liver Function Tests (LFT, Bil/ALT/AST/ALP/TP)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Bilirubin, Total (Serum, &lt;1 yr)", high:"&ge; 256.5 &micro;mol/L"}]},
     {name:"Lipid Profile", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Glucose (GLU)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"]},
+    {name:"Glucose (GLU)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Glucose (&lt;4 weeks)", low:"&le; 2.22 mmol/L", high:"&ge; 22.2 mmol/L"},{a:"Glucose (&ge;4 weeks)", low:"&le; 2.775 mmol/L", high:"&ge; 22.2 mmol/L"}]},
+    {name:"Fasting Glucose", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr", flags:["crit"], crit:[{a:"Glucose (&lt;4 weeks)", low:"&le; 2.22 mmol/L", high:"&ge; 22.2 mmol/L"},{a:"Glucose (&ge;4 weeks)", low:"&le; 2.775 mmol/L", high:"&ge; 22.2 mmol/L"}]},
     {name:"HbA1c", sample:"Whole blood - EDTA", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Cardiac & Muscle Enzymes (CK/CK-MB/LDH/AMY)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Inflammation & Immunology Markers (CRP/ASO/RF/C3/C4/TRF)", sample:"Serum with activator or Serum or Whole blood - Heparin", routine:"2–3 hrs", urgent:"<1 hr"},
@@ -460,11 +635,11 @@ const DATA = [
     {name:"Tumour Markers (PSA/AFP/CEA/CA125/CA19-9)", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Pregnancy Test", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
     {name:"Vitamin B12", sample:"Serum with activator or Serum", routine:"2–3 hrs", urgent:"<1 hr"},
-    {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Microbiology", note:"Blood cultures need a minimum 5-day incubation before a negative result can be confirmed. Many cultures have no separate urgent pathway — a Gram stain or microscopy result can usually be escalated while the culture continues to incubate.", tests:[
     {name:"Blood Culture", sample:"Blood", routine:"5 days", urgent:"—"},
-    {name:"CSF Cell Count", sample:"CSF", routine:"30 mins", urgent:"—"},
+    {name:"CSF Cell Count", sample:"CSF", routine:"30 mins", urgent:"30 mins"},
     {name:"CSF Differential", sample:"CSF", routine:"2 hrs", urgent:"1 hr"},
     {name:"CSF Gram Stain", sample:"CSF", routine:"2 hrs", urgent:"1 hr"},
     {name:"CSF Culture", sample:"CSF", routine:"2–3 days", urgent:"—"},
@@ -477,25 +652,25 @@ const DATA = [
     {name:"Throat / Nasal Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
     {name:"Sputum Culture", sample:"Sputum", routine:"2–3 days", urgent:"—"},
     {name:"Eye / Ear / Nasal Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
-    {name:"High Vaginal Swab", sample:"Swab (bacterial culture)", routine:"1 day", urgent:"—"},
+    {name:"Genital Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
+    {name:"High Vaginal Swab", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
     {name:"Pus / Wound Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
     {name:"Urine Dipstick", sample:"Urine", routine:"1 hr", urgent:"30 mins"},
     {name:"Urine Microscopy", sample:"Urine", routine:"1 hr", urgent:"30 mins"},
     {name:"Urine Microscopy, Culture & Sensitivity", sample:"Urine", routine:"2–3 days", urgent:"—"},
     {name:"KOH Skin Scraping", sample:"Skin scraping", routine:"2 days", urgent:"—"},
-    {name:"Semen Analysis", sample:"Semen", routine:"1 day", urgent:"—"},
+    {name:"Semen Analysis", sample:"Semen", routine:"1 day", urgent:"1 day"},
     {name:"Pregnancy Test (β-hCG RDT)", sample:"Urine", routine:"1 hr", urgent:"30 mins"},
     {name:"Rotavirus Rapid Diagnostic Test", sample:"Stool", routine:"1 hr", urgent:"30 mins"},
-    {name:"Clostridium Species Identification", sample:"Isolate / specimen", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Unusual / Atypical Organism Identification", sample:"Isolate / specimen", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Clostridium Species Identification", sample:"Isolate / specimen", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Unusual / Atypical Organism Identification", sample:"Isolate / specimen", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Tuberculosis", note:"GeneXpert gives same-shift turnaround; smear microscopy and CSF/pleural fluid AFB work run on a 24-hour cycle.", tests:[
     {name:"GeneXpert MTB/RIF Ultra", sample:"Sputum / CSF / Tissue / Other body fluids", routine:"2 hrs", urgent:"1 hr 25 mins"},
     {name:"Acid-Fast Bacilli (AFB) Microscopy (TB workup / TB Follow up TOC)", sample:"Sputum / CSF / Tissue / Other body fluids", routine:"24 hrs", urgent:"—"},
     {name:"Pleural Fluid TB Investigation", sample:"Pleural aspirate", routine:"24 hrs", urgent:"—"},
-    {name:"Leprosy Investigation", sample:"Skin/slit-skin smear", routine:"See Microbiology", urgent:"—"},
-    {name:"TB Culture (Mycobacterial Confirmation)", sample:"Sputum", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Pertussis / Diphtheria Confirmation", sample:"Swab", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"TB Culture (Mycobacterial Confirmation)", sample:"Sputum", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Pertussis / Diphtheria Confirmation", sample:"Swab", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Molecular laboratory", note:"GeneXpert panels give same-shift turnaround. Open RT-PCR tests run in batches — completion time depends on batch size, with urgent samples fast-tracked.", tests:[
     {name:"GeneXpert Respiratory Panel (XPT: SARS-CoV-2 / FLU A/B / RSV)", sample:"NP swab", routine:"2–3 hrs", urgent:"1–2 hrs"},
@@ -505,32 +680,31 @@ const DATA = [
     {name:"Dengue / Zika / Chikungunya PCR Panel", sample:"Whole blood - EDTA", routine:"8–24 hrs", urgent:"4–6 hrs"},
     {name:"Malaria PCR", sample:"Whole blood - EDTA", routine:"8–24 hrs", urgent:"4–6 hrs", flags:["pending"]},
     {name:"Measles / Rubella PCR Panel", sample:"NP or OP swab and Whole blood - EDTA", routine:"8–24 hrs", urgent:"4–6 hrs"},
-    {name:"Monkeypox PCR", sample:"Swab", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"SARS-CoV-2 Genomic Sequencing / Variant Typing", sample:"NP swab", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Influenza / RSV Confirmatory Testing", sample:"NP swab", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Monkeypox PCR", sample:"Swab", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"SARS-CoV-2 Genomic Sequencing / Variant Typing", sample:"NP swab", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Influenza / RSV Confirmatory Testing", sample:"NP swab", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Histology", note:"Specimens needing further investigation are shipped overseas to certified laboratories. Pathology advice is available locally, with overseas pathologist input for clarification.", tests:[
-    {name:"Biopsy – Malignant Diagnosis", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
-    {name:"Biopsy – In Situ Carcinoma", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
-    {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
-    {name:"Post-mortem", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"—", flags:["send"]},
+    {name:"Biopsy – Malignant Diagnosis", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
+    {name:"Biopsy – In Situ Carcinoma", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
+    {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
   ]},
   {dept:"Cytology", note:"Non-malignant results are issued once complete. Abnormal smears receive a verbal preliminary diagnosis locally, then confirmation overseas (NZ/Australia), adding 2–3 weeks.", tests:[
     {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"2 weeks", urgent:"1 hr"},
-    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"—"},
-    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"—"},
-    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"—"},
-    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"—"},
-    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"—"},
-    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"—"},
-    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"—"},
+    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"2 weeks"},
     {name:"Urine Cytology", sample:"Urine", routine:"2 weeks", urgent:"48 hrs"},
-    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"—"},
-    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"—"},
+    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 month"},
+    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"2 weeks"},
   ]},
   {dept:"Other / specialist referred tests", note:"These have no dedicated local department and are referred out as standard practice.", tests:[
-    {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"weeks", urgent:"—", flags:["send"]},
-    {name:"Any other test not held at VNH", sample:"As advised by department", routine:"weeks", urgent:"—", flags:["send"]},
+    {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"weeks", urgent:"weeks", flags:["send"]},
+    {name:"Any other test not held at VNH", sample:"As advised by department", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
 ];
 
@@ -548,10 +722,12 @@ const dom = {
 let totalTests = 0;
 DATA.forEach(d => totalTests += d.tests.length);
 
-dom.statusStrip.innerHTML =
-  '<span><span class="dot"></span>'+DATA.length+' departments &middot; '+totalTests+' tests indexed</span>' +
-  '<span><span class="dot"></span>Mon&ndash;Fri 08:00&ndash;17:00 full service</span>' +
-  '<span><span class="dot"></span>On-call 17:00&ndash;06:00 &amp; weekends restricted</span>';
+if(dom.statusStrip){
+  dom.statusStrip.innerHTML =
+    '<span><span class="dot"></span>'+DATA.length+' departments &middot; '+totalTests+' tests indexed</span>' +
+    '<span><span class="dot"></span>Mon&ndash;Fri 08:00&ndash;17:00 full service</span>' +
+    '<span><span class="dot"></span>On-call 17:00&ndash;08:00 &amp; weekends restricted</span>';
+}
 
 const opt0 = document.createElement('option');
 opt0.value=''; opt0.textContent='All departments';
@@ -586,7 +762,6 @@ function colorForToken(s){
 function tubeColorsFor(sample){
   if(!sample) return [];
   const s = sample.toLowerCase();
-  // split on common separators used across multi-type sample strings
   const tokens = s.split(/ or |\/| and /).map(t=>t.trim()).filter(Boolean);
   const colors = [];
   tokens.forEach(tok=>{
@@ -617,6 +792,14 @@ function flagHTML(flags){
   }).join('');
 }
 
+function slugify(s){
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
+function testId(deptName, testName){
+  return 'test-'+slugify(deptName)+'-'+slugify(testName);
+}
+
 function render(){
   const q = dom.search.value.trim().toLowerCase();
   const deptSel = dom.deptFilter.value;
@@ -628,7 +811,10 @@ function render(){
   DATA.forEach(section=>{
     if(deptSel && section.dept!==deptSel) return;
     const matched = section.tests.filter(t=>{
-      if(q && !t.name.toLowerCase().includes(q)) return false;
+      if(q){
+        const haystack = (t.name+' '+(t.sample||'')+' '+section.dept).toLowerCase();
+        if(!haystack.includes(q)) return false;
+      }
       if(urgentOnly && (!t.urgent || t.urgent==='—')) return false;
       return true;
     });
@@ -647,9 +833,12 @@ function render(){
     const tbody=document.createElement('tbody');
     matched.forEach(t=>{
       const tr=document.createElement('tr');
+      const id = testId(section.dept, t.name);
+      tr.id = id;
       const hasUrgentClass=(t.urgent && t.urgent!=='—' && t.urgent!==t.routine)?' has-urgent':'';
       tr.innerHTML =
-        '<td class="col-test">'+t.name+flagHTML(t.flags)+'</td>'+
+        '<td class="col-test">'+t.name+flagHTML(t.flags)+
+          '<button class="row-link" type="button" title="Copy link to this test" onclick="copyTestLink(\''+id+'\')">&#128279;</button></td>'+
         '<td class="col-sample">'+sampleHTML(t.sample)+'</td>'+
         '<td class="col-routine">'+t.routine+'</td>'+
         '<td class="col-urgent'+hasUrgentClass+'">'+t.urgent+'</td>';
@@ -664,6 +853,38 @@ function render(){
   dom.emptyState.style.display = shown===0 ? 'block':'none';
 }
 
+function copyTestLink(id){
+  const url = location.origin + location.pathname + '#' + id;
+  const toast = document.getElementById('copyToast');
+  const show = (msg)=>{
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 1800);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(()=>show('Link copied')).catch(()=>show(url));
+  } else {
+    show(url);
+  }
+  history.replaceState(null, '', '#'+id);
+}
+
+function goToHashTest(){
+  const id = location.hash.replace('#','');
+  if(!id || !id.startsWith('test-')) return;
+  dom.search.value = '';
+  dom.deptFilter.value = '';
+  dom.urgentToggle.checked = false;
+  dom.urgentLabel.classList.remove('active');
+  render();
+  const el = document.getElementById(id);
+  if(el){
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    el.classList.add('row-highlight');
+    setTimeout(()=>el.classList.remove('row-highlight'), 2500);
+  }
+}
+
 dom.search.addEventListener('input', render);
 dom.deptFilter.addEventListener('change', render);
 dom.urgentToggle.addEventListener('change', ()=>{
@@ -671,9 +892,14 @@ dom.urgentToggle.addEventListener('change', ()=>{
   render();
 });
 
+// pick up ?q= or ?dept= set from a link on another page, and #test- deep links
+const params = new URLSearchParams(location.search);
+if(params.get('q')){ dom.search.value = params.get('q'); }
+if(params.get('dept')){ dom.deptFilter.value = params.get('dept'); }
 render();
-</script>
-<script>
+if(location.hash) goToHashTest();
+window.addEventListener('hashchange', goToHashTest);
+
 function jumpToDept(el){
   const dept = el.getAttribute('data-dept');
   dom.deptFilter.value = dept;
@@ -683,17 +909,54 @@ function jumpToDept(el){
   render();
 }
 
-const topSearch = document.getElementById('topSearchInput');
-topSearch.addEventListener('input', function(){
-  dom.search.value = topSearch.value;
+// Hero search: minimal — just routes into the full directory search below.
+const heroForm = document.getElementById('heroSearchForm');
+const heroInput = document.getElementById('heroSearch');
+heroForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  dom.search.value = heroInput.value;
   render();
+  document.getElementById('directory').scrollIntoView({behavior:'smooth', block:'start'});
+  dom.search.focus();
 });
-topSearch.addEventListener('keydown', function(e){
-  if(e.key === 'Enter'){
-    document.getElementById('directory').scrollIntoView({behavior:'smooth', block:'start'});
-    dom.search.focus();
-  }
+
+const heroStats = document.getElementById('heroStats');
+heroStats.innerHTML =
+  '<span><span class="dot"></span>'+DATA.length+' departments</span>' +
+  '<span><span class="dot"></span>'+totalTests+' tests indexed</span>' +
+  '<span><span class="dot"></span>Mon&ndash;Fri 08:00&ndash;17:00 full service</span>';
+
+// Scroll-spy: highlight the current section in the nav
+const navLinks = Array.from(document.querySelectorAll('#mainNav a[data-section]'));
+const sections = navLinks.map(a => document.getElementById(a.dataset.section)).filter(Boolean);
+function updateActiveNav(){
+  let current = sections[0];
+  const scrollPos = window.scrollY + 90;
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active', a.dataset.section === current.id);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, {passive:true});
+updateActiveNav();
+
+// Back to top
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', function(){
+  backToTop.classList.toggle('show', window.scrollY > 600);
+}, {passive:true});
+backToTop.addEventListener('click', function(){
+  window.scrollTo({top:0, behavior:'smooth'});
 });
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{ /* offline caching unavailable; page still works online */ });
+  });
+}
+
 </script>
 </body>
 </html>
