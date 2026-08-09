@@ -819,6 +819,26 @@ function toggleComponents(id, btn){
   btn.setAttribute('aria-expanded', open ? 'false' : 'true');
 }
 
+// Strip common English suffixes so "lipids"/"lipid", "biopsy"/"biopsies" etc. line up.
+function stem(word){
+  return word
+    .replace(/(ies)$/,'y')
+    .replace(/(sses)$/,'ss')
+    .replace(/([^s])s$/,'$1');
+}
+
+// True if every word in the query matches somewhere in the haystack — either as a
+// direct substring (so partial typing like "lip" still works), or by stem (so
+// "lipids" matches "lipid" and vice versa).
+function matchesQuery(haystack, query){
+  const hWords = haystack.split(/\s+/).filter(Boolean);
+  const qWords = query.split(/\s+/).filter(Boolean);
+  return qWords.every(qw=>{
+    const qStem = stem(qw);
+    return hWords.some(hw=> hw.includes(qw) || stem(hw)===qStem || hw.startsWith(qStem));
+  });
+}
+
 function render(){
   const q = dom.search.value.trim().toLowerCase();
   const deptSel = dom.deptFilter.value;
@@ -832,7 +852,7 @@ function render(){
     const matched = section.tests.filter(t=>{
       if(q){
         const haystack = (t.name+' '+(t.sample||'')+' '+section.dept+' '+(t.components||[]).join(' ')).toLowerCase();
-        if(!haystack.includes(q)) return false;
+        if(!matchesQuery(haystack, q)) return false;
       }
       if(urgentOnly && (!t.urgent || t.urgent==='—')) return false;
       return true;
