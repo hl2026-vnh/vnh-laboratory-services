@@ -152,7 +152,6 @@
   td.col-test{width:34%;font-weight:600;color:var(--navy-deep);}
   td.col-sample{width:22%;color:var(--ink-soft);font-size:14px;}
   .sample-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:7px;vertical-align:middle;border:1px solid rgba(0,0,0,0.2);flex-shrink:0;}
-  .sample-swatch-empty{background:#fff;border:1px solid #9ca3af;}
   td.col-routine{width:17%;font-family:Arial,sans-serif;font-size:14px;}
   td.col-urgent{width:17%;font-family:Arial,sans-serif;font-size:14px;}
   td.col-urgent.has-urgent{color:var(--red);font-weight:700;}
@@ -466,7 +465,7 @@
       <div class="tube-card"><div class="tube-cap" style="background:#e0b94a;"></div><div class="tube-info"><p class="tube-name">Urine</p><p class="tube-additive">Yellow top container</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">CSF</p><p class="tube-additive">Sterile screw-top universal container</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#7a5430;"></div><div class="tube-info"><p class="tube-name">Stool</p><p class="tube-additive">Brown top container</p></div></div>
-      <div class="tube-card"><div class="tube-cap" style="background:#cfd6a8;"></div><div class="tube-info"><p class="tube-name">Swab (bacterial culture)</p><p class="tube-additive">Charcoal/Amies transport swab</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#cfd6a8;"></div><div class="tube-info"><p class="tube-name">Culture Swab (bacterial culture)</p><p class="tube-additive">Charcoal/Amies transport swab</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#e0b94a;"></div><div class="tube-info"><p class="tube-name">Sputum</p><p class="tube-additive">Yellow top container, biohazard bag</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Tissue biopsy</p><p class="tube-additive">Formalin pot</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Nasopharyngeal &amp; oropharyngeal swab (molecular/PCR)</p><p class="tube-additive">Viral transport medium (VTM)</p></div></div>
@@ -646,15 +645,15 @@ const DATA = [
     {name:"Stool Microscopy", sample:"Stool", routine:"2 hrs", urgent:"30 mins"},
     {name:"Stool Culture", sample:"Stool", routine:"2–3 days", urgent:"—"},
     {name:"Faecal Occult Blood", sample:"Stool", routine:"1 hr", urgent:"30 mins"},
-    {name:"Body Fluid Cell Count & Differential", sample:"Sterile fluids", routine:"2 hrs", urgent:"1 hr"},
+    {name:"Body Fluid Cell Count & Differential", sample:"Sterile fluids, EDTA (sterile fluid)", routine:"2 hrs", urgent:"1 hr"},
     {name:"Body Fluid Gram Stain", sample:"Sterile fluids", routine:"2 hrs", urgent:"1 hr"},
     {name:"Body Fluid Culture", sample:"Sterile fluids", routine:"2–3 days", urgent:"—"},
-    {name:"Throat / Nasal Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
+    {name:"Throat / Nasal Swab Culture", sample:"Culture Swab (bacterial culture) - Amies", routine:"2–3 days", urgent:"—"},
     {name:"Sputum Culture", sample:"Sputum", routine:"2–3 days", urgent:"—"},
-    {name:"Eye / Ear / Nasal Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
-    {name:"Genital Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
-    {name:"High Vaginal Swab", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
-    {name:"Pus / Wound Swab Culture", sample:"Swab (bacterial culture)", routine:"2–3 days", urgent:"—"},
+    {name:"Eye / Ear / Nasal Swab Culture", sample:"Culture Swab (bacterial culture) - Amies", routine:"2–3 days", urgent:"—"},
+    {name:"Genital Swab Culture", sample:"Culture Swab (bacterial culture) - Amies", routine:"2–3 days", urgent:"—"},
+    {name:"High Vaginal Swab", sample:"Culture Swab (bacterial culture) - Amies", routine:"2–3 days", urgent:"—"},
+    {name:"Pus / Wound Swab Culture", sample:"Culture Swab (bacterial culture) - Amies", routine:"2–3 days", urgent:"—"},
     {name:"Urine Dipstick", sample:"Urine", routine:"1 hr", urgent:"30 mins"},
     {name:"Urine Microscopy", sample:"Urine", routine:"1 hr", urgent:"30 mins"},
     {name:"Urine Microscopy, Culture & Sensitivity", sample:"Urine", routine:"2–3 days", urgent:"—"},
@@ -690,21 +689,17 @@ const DATA = [
     {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
   ]},
   {dept:"Cytology", note:"Non-malignant results are issued once complete. Abnormal smears receive a verbal preliminary diagnosis locally, then confirmation overseas (NZ/Australia), adding 2–3 weeks.", tests:[
-    {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"24 hrs", urgent:"1 hr", flags:["crit"]},
-    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"2 weeks", urgent:"1 hr"},
+    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"2 weeks"},
     {name:"Urine Cytology", sample:"Urine", routine:"2 weeks", urgent:"48 hrs"},
-    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 week"},
-    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Liver Cytology", sample:"Bile Duct Brushing and Biliary Duct Brushing", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Renal Cytology", sample:"Renal Brushing or washing", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Scraping and Miscellaneous Smears", sample:"Skin and Cutaneous Lesions, Cervical &amp; Vaginal Scrapings, Oral &amp; Buccal Mucosa Scrapings, Ocular &amp; Conjunctival Scrapings", routine:"2 weeks", urgent:"24 - 48 hrs"},
-    {name:"Hydrocoele Cytology", sample:"Hydrocoele fluid", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 month"},
+    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"2 weeks"},
   ]},
   {dept:"Other / specialist referred tests", note:"These have no dedicated local department and are referred out as standard practice.", tests:[
     {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"weeks", urgent:"weeks", flags:["send"]},
@@ -782,9 +777,7 @@ function tubeColorsFor(sample){
 function sampleHTML(sample){
   if(!sample) return '—';
   const colors = tubeColorsFor(sample);
-  const swatches = colors.length
-    ? colors.map(()=>'<span class="sample-swatch sample-swatch-empty"></span>').join('')
-    : '<span class="sample-swatch sample-swatch-empty"></span>';
+  const swatches = colors.map(c=>'<span class="sample-swatch" style="background:'+c+';"></span>').join('');
   return swatches + sample;
 }
 
