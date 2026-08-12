@@ -469,6 +469,14 @@
       <div class="tube-card"><div class="tube-cap" style="background:#e0b94a;"></div><div class="tube-info"><p class="tube-name">Sputum</p><p class="tube-additive">Yellow top container, biohazard bag</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Tissue biopsy</p><p class="tube-additive">Formalin pot</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Nasopharyngeal &amp; oropharyngeal swab (molecular/PCR)</p><p class="tube-additive">Viral transport medium (VTM)</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Other Sterile fluids (Synovial, Pericardial, Peritoneal, Pleural, and other)</p><p class="tube-additive">Sterile screw-top universal container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Fine Needle Aspiration</p><p class="tube-additive">Slides and/or sterile universal container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#a3c9a8;"></div><div class="tube-info"><p class="tube-name">Brushing or Washing Cytology</p><p class="tube-additive">Cytology fixative/liquid-based cytology vial</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#d9c589;"></div><div class="tube-info"><p class="tube-name">Scrapings and Miscellaneous smear</p><p class="tube-additive">Glass slide, fixative spray or 95% alcohol</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Lavage (BAL, gastric lavage)</p><p class="tube-additive">Sterile screw-top universal container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#c9a0dc;"></div><div class="tube-info"><p class="tube-name">Discharge</p><p class="tube-additive">Sterile swab or universal container</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#f2b6c1;"></div><div class="tube-info"><p class="tube-name">Cervical smear</p><p class="tube-additive">Liquid-based cytology vial or glass slide</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#7d98a1;"></div><div class="tube-info"><p class="tube-name">Semen</p><p class="tube-additive">Sterile wide-mouth container</p></div></div>
     </div>
   </section>
 
@@ -637,7 +645,7 @@ const DATA = [
     {name:"Specialist Iron Studies", sample:"Serum with activator or Serum", routine:"weeks", urgent:"weeks", flags:["send"]},
   ]},
   {dept:"Microbiology", note:"Blood cultures need a minimum 5-day incubation before a negative result can be confirmed. Many cultures have no separate urgent pathway — a Gram stain or microscopy result can usually be escalated while the culture continues to incubate.", tests:[
-    {name:"Blood Culture", sample:"Blood", routine:"5 days", urgent:"—"},
+    {name:"Blood Culture", sample:"Blood culture bottle", routine:"5 days", urgent:"—", volumes:["Adults - Aerobic and Anaerobic 8-10mL (minimum 3mL)","Paediatric - Aerobic only 1-3mL"]},
     {name:"CSF Cell Count", sample:"CSF", routine:"30 mins", urgent:"30 mins"},
     {name:"CSF Differential", sample:"CSF", routine:"2 hrs", urgent:"1 hr"},
     {name:"CSF Gram Stain", sample:"CSF", routine:"2 hrs", urgent:"1 hr"},
@@ -689,17 +697,21 @@ const DATA = [
     {name:"Biopsy – Margin Assessment (Positive/Close/Negative Margins)", sample:"Tissue biopsy", routine:"3–4 weeks", urgent:"3–4 weeks", flags:["send"]},
   ]},
   {dept:"Cytology", note:"Non-malignant results are issued once complete. Abnormal smears receive a verbal preliminary diagnosis locally, then confirmation overseas (NZ/Australia), adding 2–3 weeks.", tests:[
-    {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"2 weeks", urgent:"1 hr"},
-    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Nipple Discharge Cytology", sample:"Discharge", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Lung Cytology", sample:"Respiratory samples", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Gastric Cytology", sample:"GI samples", routine:"2 weeks", urgent:"2 weeks"},
-    {name:"Urine Cytology", sample:"Urine", routine:"2 weeks", urgent:"48 hrs"},
-    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 month"},
-    {name:"Reproductive System Cytology", sample:"Various reproductive tract samples", routine:"2 weeks", urgent:"2 weeks"},
+    {name:"Cerebrospinal Fluid Cytology", sample:"CSF", routine:"24 hrs", urgent:"1 hr", flags:["crit"]},
+    {name:"Fine Needle Aspiration Cytology", sample:"Aspirate", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Serous Fluid Cytology", sample:"Serous fluids", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Synovial Fluid Cytology", sample:"Synovial fluid", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Vitreous Fluid Cytology", sample:"Vitreous fluid", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Nipple Discharge Cytology", sample:"Nipple Discharge", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Lung Cytology", sample:"Sputum, Bronchoalveolar lavage (BAL), Bronchial brushing or washing, Endobronchial Ultrasound-guided transbronchial needle aspirate (EBUS-TBNA)", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Gastric Cytology", sample:"Gastric lavage, Oesophageal brushing or washing", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Urine Cytology", sample:"Urine (mid-stream, ileal conduit)", routine:"2 weeks", urgent:"48 hrs"},
+    {name:"Gynaecological Cytology", sample:"Cervical smear", routine:"1 month", urgent:"1 week"},
+    {name:"Reproductive System Cytology", sample:"Vaginal washing, Endometrial brushing, Semen, Prostatic fluid, Testicular FNA, Vulval, Cervical and Vaginal scrapings", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Liver Cytology", sample:"Bile Duct Brushing and Biliary Duct Brushing", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Renal Cytology", sample:"Renal Brushing or washing", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Scraping and Miscellaneous Smears", sample:"Skin and Cutaneous Lesions, Oral & Buccal Mucosa Scrapings, Ocular & Conjunctival Scrapings", routine:"2 weeks", urgent:"24 - 48 hrs"},
+    {name:"Hydrocoele Cytology", sample:"Hydrocoele fluid", routine:"2 weeks", urgent:"24 - 48 hrs"},
   ]},
   {dept:"Other / specialist referred tests", note:"These have no dedicated local department and are referred out as standard practice.", tests:[
     {name:"Paternity / DNA Testing", sample:"Whole blood - EDTA", routine:"weeks", urgent:"weeks", flags:["send"]},
@@ -739,7 +751,7 @@ DATA.forEach(d=>{
 
 function colorForToken(s){
   if(!s) return null;
-  if(s.includes('n/a') || s.includes('isolate') || s.includes('discharge') || s.includes('various')) return null;
+  if(s.includes('n/a') || s.includes('isolate')) return null;
   if(s.includes('vtm') || s.includes('np swab') || s.includes('np or op') || s.includes('nasopharyngeal') || s.includes('oropharyngeal')) return '#dedad0';
   if(s.includes('activator')) return 'linear-gradient(to bottom, #c0463f 60%, #e0b94a 60%)';
   if(s.includes('citrate')) return '#7fb8d6';
@@ -750,10 +762,15 @@ function colorForToken(s){
   if(s.includes('urine')) return '#e0b94a';
   if(s.includes('csf')) return '#dedad0';
   if(s.includes('stool') || s.includes('faeces')) return '#7a5430';
-  if(s.includes('sputum')) return '#e0b94a';
+  if(s.includes('sputum') || s.includes('respiratory')) return '#e0b94a';
   if(s.includes('swab')) return '#cfd6a8';
-  if(s.includes('tissue') || s.includes('biopsy') || s.includes('aspirate')) return '#dedad0';
-  if(s.includes('fluid')) return '#dedad0';
+  if(s.includes('tissue') || s.includes('biopsy') || s.includes('aspirate') || s.includes('fna')) return '#dedad0';
+  if(s.includes('fluid') || s.includes('lavage')) return '#dedad0';
+  if(s.includes('brushing') || s.includes('washing')) return '#a3c9a8';
+  if(s.includes('scraping') || s.includes('vulval')) return '#d9c589';
+  if(s.includes('discharge')) return '#c9a0dc';
+  if(s.includes('cervical') || s.includes('smear')) return '#f2b6c1';
+  if(s.includes('semen')) return '#7d98a1';
   if(s.includes('blood')) return '#9b7fc4';
   return null;
 }
@@ -761,7 +778,7 @@ function colorForToken(s){
 function tubeColorsFor(sample){
   if(!sample) return [];
   const s = sample.toLowerCase();
-  const tokens = s.split(/ or |\/| and /).map(t=>t.trim()).filter(Boolean);
+  const tokens = s.split(/ or |\/| and |,\s*/).map(t=>t.trim()).filter(Boolean);
   const colors = [];
   tokens.forEach(tok=>{
     const c = colorForToken(tok);
@@ -801,6 +818,16 @@ function componentsRowHTML(components){
   return '<div class="comp-list">'+pills+'</div>';
 }
 
+function volumesToggleHTML(volumes, id){
+  if(!volumes || volumes.length===0) return '';
+  return '<button type="button" class="comp-toggle" aria-expanded="false" onclick="toggleVolumes(\''+id+'\', this)">Collection volumes <span class="comp-caret">&#9662;</span></button>';
+}
+
+function volumesRowHTML(volumes){
+  const items = volumes.map(v=>'<div class="comp-pill" style="cursor:default;">'+v+'</div>').join('');
+  return '<div class="comp-list">'+items+'</div>';
+}
+
 function searchFor(term){
   dom.search.value = term;
   render();
@@ -823,6 +850,14 @@ function toggleComponents(id, btn){
   btn.setAttribute('aria-expanded', open ? 'false' : 'true');
 }
 
+function toggleVolumes(id, btn){
+  const row = document.getElementById('vol-'+id);
+  if(!row) return;
+  const open = row.style.display !== 'none';
+  row.style.display = open ? 'none' : '';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+}
+
 // Strip common English suffixes so "lipids"/"lipid", "biopsy"/"biopsies" etc. line up.
 function stem(word){
   return word
@@ -833,10 +868,13 @@ function stem(word){
 
 // True if every word in the query matches somewhere in the haystack — either as a
 // direct substring (so partial typing like "lip" still works), or by stem (so
-// "lipids" matches "lipid" and vice versa).
+// "lipids" matches "lipid" and vice versa). Punctuation (parentheses, commas,
+// slashes, hyphens) is stripped from words first so "FBC" / "FBCs" matches a
+// haystack word like "(FBC)" and not just an exact character run.
 function matchesQuery(haystack, query){
-  const hWords = haystack.split(/\s+/).filter(Boolean);
-  const qWords = query.split(/\s+/).filter(Boolean);
+  const clean = w => w.replace(/[^a-z0-9]+/g,'');
+  const hWords = haystack.split(/\s+/).map(clean).filter(Boolean);
+  const qWords = query.split(/\s+/).map(clean).filter(Boolean);
   return qWords.every(qw=>{
     const qStem = stem(qw);
     return hWords.some(hw=> hw.includes(qw) || stem(hw)===qStem || hw.startsWith(qStem));
@@ -880,7 +918,7 @@ function render(){
       tr.id = id;
       const hasUrgentClass=(t.urgent && t.urgent!=='—' && t.urgent!==t.routine)?' has-urgent':'';
       tr.innerHTML =
-        '<td class="col-test">'+t.name+flagHTML(t.flags)+componentsToggleHTML(t.components, id)+'</td>'+
+        '<td class="col-test">'+t.name+flagHTML(t.flags)+componentsToggleHTML(t.components, id)+volumesToggleHTML(t.volumes, id)+'</td>'+
         '<td class="col-sample">'+sampleHTML(t.sample)+'</td>'+
         '<td class="col-routine">'+t.routine+'</td>'+
         '<td class="col-urgent'+hasUrgentClass+'">'+t.urgent+'</td>';
@@ -892,6 +930,14 @@ function render(){
         compTr.style.display = 'none';
         compTr.innerHTML = '<td colspan="4">'+componentsRowHTML(t.components)+'</td>';
         tbody.appendChild(compTr);
+      }
+      if(t.volumes && t.volumes.length>0){
+        const volTr = document.createElement('tr');
+        volTr.className = 'comp-row';
+        volTr.id = 'vol-'+id;
+        volTr.style.display = 'none';
+        volTr.innerHTML = '<td colspan="4">'+volumesRowHTML(t.volumes)+'</td>';
+        tbody.appendChild(volTr);
       }
     });
     table.appendChild(tbody);
