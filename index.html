@@ -172,7 +172,7 @@
   .comp-pill:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
 
   /* TUBE QUICK GUIDE */
-  .tube-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:8px;}
+  .tube-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:8px 0 32px;}
   .tube-card{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);background:var(--paper-raised);padding:14px;border-radius:4px;transition:box-shadow 0.15s,transform .15s;}
   .tube-card:hover{box-shadow:0 4px 12px rgba(26,58,107,0.12);transform:translateY(-1px);}
   .tube-cap{width:18px;height:42px;border-radius:4px 4px 2px 2px;flex-shrink:0;border:1px solid rgba(0,0,0,0.2);margin-top:2px;}
@@ -447,10 +447,12 @@
 
     <p class="subheading">Quick blood draw guide — order of draw</p>
     <div class="tube-grid">
-      <div class="tube-card"><span class="draw-num">1</span><div class="tube-cap" style="background:#e8e3c9;"></div><div class="tube-info"><p class="tube-name">Blood culture bottle</p><p class="tube-additive">Aerobic/anaerobic</p></div></div>
-      <div class="tube-card"><span class="draw-num">2</span><div class="tube-cap" style="background:#7fb8d6;"></div><div class="tube-info"><p class="tube-name">Coagulation / citrate</p><p class="tube-additive">Light blue top</p></div></div>
-      <div class="tube-card"><span class="draw-num">3</span><div class="tube-cap" style="background:#c0463f;"></div><div class="tube-info"><p class="tube-name">Serum, with or without gel</p><p class="tube-additive">Red top</p></div></div>
-      <div class="tube-card"><span class="draw-num">4</span><div class="tube-cap" style="background:#9b7fc4;"></div><div class="tube-info"><p class="tube-name">EDTA</p><p class="tube-additive">Purple top</p></div></div>
+      <div class="tube-card"><span class="draw-num">1</span><div class="tube-cap" style="background:#e8e3c9;"></div><div class="tube-info"><p class="tube-name">Blood culture</p><p class="tube-additive">Aerobic/anaerobic culture bottle</p></div></div>
+      <div class="tube-card"><span class="draw-num">2</span><div class="tube-cap" style="background:#7fb8d6;"></div><div class="tube-info"><p class="tube-name">Plasma – Sodium Citrate</p><p class="tube-additive">Light blue top</p></div></div>
+      <div class="tube-card"><span class="draw-num">3</span><div class="tube-cap" style="background:#c0463f;"></div><div class="tube-info"><p class="tube-name">Serum, no additive</p><p class="tube-additive">Red top</p></div></div>
+      <div class="tube-card"><span class="draw-num">4</span><div class="tube-cap" style="background:#c0463f;border-top:8px solid #e0b94a;"></div><div class="tube-info"><p class="tube-name">Serum, with clot activator/gel separator</p><p class="tube-additive">Red top with yellow ring</p></div></div>
+      <div class="tube-card"><span class="draw-num">5</span><div class="tube-cap" style="background:linear-gradient(to right, #5f9e6e 50%, #2c3e8c 50%);"></div><div class="tube-info"><p class="tube-name">Whole blood – Lithium Heparin</p><p class="tube-additive">Green top or Royal Blue top</p></div></div>
+      <div class="tube-card"><span class="draw-num">6</span><div class="tube-cap" style="background:#9b7fc4;"></div><div class="tube-info"><p class="tube-name">Whole blood – EDTA</p><p class="tube-additive">Lavender top</p></div></div>
     </div>
 
     <p class="subheading">Sample types &amp; containers</p>
@@ -467,8 +469,8 @@
       <div class="tube-card"><div class="tube-cap" style="background:#7a5430;"></div><div class="tube-info"><p class="tube-name">Stool</p><p class="tube-additive">Brown top container</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#cfd6a8;"></div><div class="tube-info"><p class="tube-name">Culture Swab (bacterial culture)</p><p class="tube-additive">Charcoal/Amies transport swab</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#e0b94a;"></div><div class="tube-info"><p class="tube-name">Sputum</p><p class="tube-additive">Yellow top container, biohazard bag</p></div></div>
-      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Tissue biopsy</p><p class="tube-additive">Formalin pot</p></div></div>
-      <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Nasopharyngeal &amp; oropharyngeal swab (molecular/PCR)</p><p class="tube-additive">Viral transport medium (VTM)</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#c17f59;"></div><div class="tube-info"><p class="tube-name">Tissue biopsy</p><p class="tube-additive">Formalin pot</p></div></div>
+      <div class="tube-card"><div class="tube-cap" style="background:#e57373;"></div><div class="tube-info"><p class="tube-name">Nasopharyngeal &amp; oropharyngeal swab (molecular/PCR)</p><p class="tube-additive">Viral transport medium (VTM)</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Other Sterile fluids (Synovial, Pericardial, Peritoneal, Pleural, and other)</p><p class="tube-additive">Sterile screw-top universal container</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#dedad0;"></div><div class="tube-info"><p class="tube-name">Fine Needle Aspiration</p><p class="tube-additive">Slides and/or sterile universal container</p></div></div>
       <div class="tube-card"><div class="tube-cap" style="background:#a3c9a8;"></div><div class="tube-info"><p class="tube-name">Brushing or Washing Cytology</p><p class="tube-additive">Cytology fixative/liquid-based cytology vial</p></div></div>
@@ -752,7 +754,7 @@ DATA.forEach(d=>{
 function colorForToken(s){
   if(!s) return null;
   if(s.includes('n/a') || s.includes('isolate')) return null;
-  if(s.includes('vtm') || s.includes('np swab') || s.includes('np or op') || s.includes('nasopharyngeal') || s.includes('oropharyngeal')) return '#dedad0';
+  if(s.includes('vtm') || s.includes('np swab') || s.includes('np or op') || s.includes('nasopharyngeal') || s.includes('oropharyngeal') || s==='np' || s.includes('op swab')) return '#e57373';
   if(s.includes('activator')) return 'linear-gradient(to bottom, #c0463f 60%, #e0b94a 60%)';
   if(s.includes('citrate')) return '#7fb8d6';
   if(s.includes('edta')) return '#9b7fc4';
@@ -764,7 +766,8 @@ function colorForToken(s){
   if(s.includes('stool') || s.includes('faeces')) return '#7a5430';
   if(s.includes('sputum') || s.includes('respiratory')) return '#e0b94a';
   if(s.includes('swab')) return '#cfd6a8';
-  if(s.includes('tissue') || s.includes('biopsy') || s.includes('aspirate') || s.includes('fna')) return '#dedad0';
+  if(s.includes('tissue') || s.includes('biopsy')) return '#c17f59';
+  if(s.includes('aspirate') || s.includes('fna')) return '#dedad0';
   if(s.includes('fluid') || s.includes('lavage')) return '#dedad0';
   if(s.includes('brushing') || s.includes('washing')) return '#a3c9a8';
   if(s.includes('scraping') || s.includes('vulval')) return '#d9c589';
